@@ -13,8 +13,8 @@ public class numtri {
         BufferedReader br = new BufferedReader(new FileReader("numtri.in"));
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("numtri.out")));
         int N = Integer.parseInt(br.readLine());
-        int[][] triangle = new int[N][N];
-        int[][] results = new int[N][N];
+        int[][] triangle = new int[N+1][N+1];
+        int[][] results = new int[N+1][N+1];
         int total = 0;
         for (int i = 0; i < N; i++) {
             int max = 0;
@@ -26,34 +26,20 @@ public class numtri {
             }
             total+=max;
         }
-        out.println(findLongest(triangle, 0, 0, results, total));
+        out.println(findLongest(triangle, 0, 0, results, N));
         br.close();
         out.close();
     }
 
-    public static int findLongest(int[][] triangle, int i, int j, int[][] results, int total) {
+    public static int findLongest(int[][] triangle, int i, int j, int[][] results, int N) {
         // System.out.println(i+" "+j);
-        int max = triangle[i][j];
-        if (results[0][0]==-1) {
-            if (triangle.length - 2 > i) {
-                max += Math.max(Math.max(findLongest(triangle, i + 2, j, results, total), findLongest(triangle, i + 2, j + 1, results, total)),
-                        findLongest(triangle, i + 2, j + 2, results, total)) + Math.max(triangle[i + 1][j], triangle[i + 1][j + 1]);
-            } else if (triangle.length - 1 > i) {
-                max += Math.max(findLongest(triangle, i + 1, j, results, total), findLongest(triangle, i + 1, j + 1, results, total));
-            }
-            if (max==total) {
-                results[0][0]=max;
-            }
-            results[i][j]=max;
+        if(results[i][j]!=-1) {
+            return results[i][j];
+        } else if (i<=triangle.length) {
+            results[i][j]=triangle[i][j]+Math.max(findLongest(triangle, i+1, j, results, N), findLongest(triangle, i+1, j+1, results, N));
+            return results[i][j];
+        } else {
+            return 0;
         }
-        if (results[0][0]!=-1) {  
-            for (int ii = 0; ii < 10; ii++) {
-                for (int jj = 0; jj < results[ii].length; jj++) {
-                    System.out.print(results[ii][jj]+" ");                    
-                }
-                System.out.println();
-            }
-        }
-        return max;
     }
 }

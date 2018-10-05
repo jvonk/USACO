@@ -16,28 +16,56 @@ public class pprime {
         StringTokenizer line = new StringTokenizer(br.readLine());
         int start = Integer.parseInt(line.nextToken());
         int end = Integer.parseInt(line.nextToken());
-        boolean prime[] = new boolean[end + 1];
+        List<Integer> primes = sieveOfEratosthenes((int) Math.sqrt(end) + 1);
+        List<Integer> pals = new List<Integer>();
+        pals = generatePal(pals, N);
+        System.out.println(System.currentTimeMillis()-startTime);
+        br.close();
+        out.close();
+        System.out.println(System.currentTimeMillis()-startTime);
+    }
+    public static List<Integer> generatePal(List<Integer> digits, int N) {
+        List<Integer> pals = new ArrayList<Integer>();
+        if (N==0) {
+            for (d = 1; d <= 9; d+=2) {
+                List<Integer> temp = digits;
+                temp.add(d); 
+                pals.addAll(generatePal(temp, N+1));
+            }
+        } else {
+            for (d = 1; d <= 9; d++) {
+                List<Integer> temp = digits;
+                temp.add(d); 
+                pals.addAll(generatePal(temp, N+1));
+            }
+        }
+        return pals;
+    }
+    public static List<Integer> sieveOfEratosthenes(int n) {
+        List<Integer> primeNumbers = new LinkedList<>();
+        boolean prime[] = new boolean[n + 1];
         Arrays.fill(prime, true);
-        for (int p = 2; p * p <= end; p++) {
+        for (int p = 2; p * p <= n; p++) {
             if (prime[p]) {
-                int temp = start-start%p;
-                int begin = Math.max(p * 2, temp);
-                for (int i = begin; i <= end; i += p) {
+                for (int i = p * 2; i <= n; i += p) {
                     prime[i] = false;
                 }
             }
         }
-        for (int i = start; i <= end; i++) {
+        for (int i = 2; i <= n; i++) {
             if (prime[i]) {
-                String temp = String.valueOf(i);
-                String temp2 = new StringBuilder(temp).reverse().toString();
-                if (temp.equals(temp2)) {
-                    out.println(i);
-                }    
+                primeNumbers.add(i);
             }
         }
-        br.close();
-        out.close();
-        System.out.println(System.currentTimeMillis()-startTime);
+        return primeNumbers;
+    }
+    public static boolean isPrime(int number, List<Integer> primes) {
+        int sqrt = (int) Math.sqrt(number) + 1;
+        for (int i = 0; primes.get(i) < sqrt; i++) {
+            if (number % primes.get(i) == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }
