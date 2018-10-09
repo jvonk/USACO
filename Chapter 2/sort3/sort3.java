@@ -36,7 +36,16 @@ public class sort3 {
         out.close();
         // System.out.println(System.currentTimeMillis() - startTime);
     }
-
+    public static List<List<Integer>> sort(List<Integer> results, int starti, int startj, int swaps) {
+        swaps++;
+        List<Integer> temp = new ArrayList<Integer>();
+        temp.addAll(results);
+        Collections.swap(temp, starti, startj);
+        List<List<Integer>> ret = new ArrayList<List<Integer>>();
+        ret.add(temp);
+        
+    }
+    
     public static List<List<Integer>> sortArray(List<Integer> results, int[] order, int starti, int startj, boolean skip) {
         
         int swaps = 0;

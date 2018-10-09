@@ -10,7 +10,7 @@ import java.util.*;
 
 public class castle {
     public static void main(String[] args) throws Exception {
-        // long startTime = System.currentTimeMillis();
+        long startTime = System.currentTimeMillis();
         BufferedReader br = new BufferedReader(new FileReader("castle.in"));
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("castle.out")));
         StringTokenizer line = new StringTokenizer(br.readLine());
@@ -49,113 +49,55 @@ public class castle {
             }
         }
         List<Integer> component = new ArrayList<Integer>();
-        List<Integer> found = findMax(connections, component);
-        out.println(found.get(0));
-        out.println(found.get(1));
-        int max = 0;
-        int maxnum = 0;
-        int maxx = 0;
-        int maxy = 0;
-        char maxDir = '?';
-        for (int i = 0; i < connections.length; i++) {
-            if (i >= width) {
-                component = new ArrayList<Integer>();
-                boolean[][] temp = connections;
-                int north = i - width;
-                if (!temp[i][north]) {
-                    temp[i][north] = true;
-                    temp[north][i] = true;
-                    found = findMax(temp, component);
-                    if (found.get(1) > max) {
-                        maxnum = found.get(0);
-                        max = found.get(1);
-                        maxDir = 'N';
-                        maxx = i % width + 1;
-                        maxy = i / width + 1;
-                    } else if (found.get(1) == max) {
-                        int x = i % width + 1;
-                        int y = i / width + 1;
-                        if (x < maxx) {
-                            maxnum = found.get(0);
-                            max = found.get(1);
-                            maxDir = 'N';
-                            maxx = x;
-                            maxy = y;
-                        } else if (x == maxx && y <= maxy) {
-                            maxnum = found.get(0);
-                            max = found.get(1);
-                            maxDir = 'N';
-                            maxx = x;
-                            maxy = y;
-                        }
-                    }
-                    temp[i][north] = false;
-                    temp[north][i] = false;
-                }
-            }
-            if (i % width < width - 1) {
-                component = new ArrayList<Integer>();
-                boolean[][] temp = connections;
-                int east = i + 1;
-                if (!temp[i][east]) {
-                    temp[i][east] = true;
-                    temp[east][i] = true;
-                    found = findMax(temp, component);
-                    if (found.get(1) > max) {
-                        maxnum = found.get(0);
-                        max = found.get(1);
-                        maxDir = 'E';
-                        maxx = i % width + 1;
-                        maxy = i / width + 1;
-                    } else if (found.get(1) == max) {
-                        int x = i % width + 1;
-                        int y = i / width + 1;
-                        if (x < maxx) {
-                            maxnum = found.get(0);
-                            max = found.get(1);
-                            maxDir = 'E';
-                            maxx = x;
-                            maxy = y;
-                        } else if (x == maxx && y < maxy) {
-                            maxnum = found.get(0);
-                            max = found.get(1);
-                            maxDir = 'E';
-                            maxx = x;
-                            maxy = y;
-                        }
-                    }
-                    temp[i][east] = false;
-                    temp[east][i] = false;
-                }
-            }
-        }
-        if(maxnum==1) {
-            max=connections.length;
-        }
-        out.println(max);
-        out.println(maxy + " " + maxx + " " + maxDir);
-        br.close();
-        out.close();
-        // System.out.println(System.currentTimeMillis() - startTime);
-    }
-
-    public static List<Integer> findMax(boolean[][] connections, List<Integer> component) {
         component = findComponents(connections, component);
         int numComponents = component.get(component.size() - 1);
-        int[] components = new int[numComponents + 1];
-        for (int i = 0; i < connections.length - 1; i++) {
+        out.println(numComponents);
+        component.remove(component.size() - 1);
+        int[] components = new int[numComponents];
+        System.out.println(component);
+        for (int i = 0; i < component.size(); i++) {
             components[component.get(i)]++;
+            System.out.print(components[component.get(i)] + " ");
         }
         int max = 0;
-        for (int i = 0; i < numComponents; i++) {
+        for (int i = 0; i < components.length; i++) {
             if (components[i] > max) {
                 max = components[i];
             }
         }
-        List<Integer> temp = new ArrayList<Integer>();
-        temp.add(numComponents);
-        temp.add(max);
-        return temp;
+        out.println(max);
+        int maxi = 0;
+        int maxj = 0;
+        for (int i = 0; i < connections.length; i++) {
+            for (int j = 0; j < connections.length; j++) {
+                if (i != j && (component.get(i) != component.get(j))) {
+                    if ((j == i - 1 && i % width != 0) || j == i + width) {
+                        int newMax = components[component.get(i)] + components[component.get(j)];
+                        if (newMax >= max) {
+                            max = newMax;
+                            maxi = i;
+                            maxj = j;
+                        }
+                    }
+                }
+            }
+        }
+        out.println(max);
+        System.out.println("\n" + maxi + " " + maxj);
+        if (maxj == maxi - 1) {
+            int x = maxj % width + 1;
+            int y = maxj / width + 1;
+            out.print(y + " " + x);
+            out.println(" E");
+        } else if (maxj == maxi + width) {
+            int x = maxj % width + 1;
+            int y = maxj / width + 1;
+            out.print(y + " " + x);
+            out.println(" N");
+        }
+        br.close();
+        out.close();
+        System.out.println(System.currentTimeMillis() - startTime);
     }
 
     public static List<Integer> floodFill(boolean[][] connections, List<Integer> component, int newComponent) {

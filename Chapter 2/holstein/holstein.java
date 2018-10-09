@@ -36,7 +36,12 @@ public class holstein {
             System.out.println();
         }
         br.close();
-        out.println(solve(feeds, vitamins, new int[V], amounts, -1));
+        int[] temp = new int[V];
+        int[] temp2 = new int[G];
+        int[] results = solve(feeds, vitamins, temp, temp2, -1);
+        for (int result : results) {
+            out.println(result);
+        }
         out.close();
         System.out.println(System.currentTimeMillis() - startTime);
     }
@@ -50,26 +55,33 @@ public class holstein {
                     works=false;
                 }
             }
-        } else {
-            works = false;
         }
         if(!works) {
             List<int[]> amountsArray = new ArrayList<int[]>();
-            for (int i = 0; i < feeds[which].length; i++) {
-                amountsArray.add(solve(feeds, vitamins, totals, amounts, i)));
+            if(which>-1) {
+                for (int i = 0; i < feeds[which].length; i++) {
+                    int[] temp = solve(feeds, vitamins, totals, amounts, i);
+                    if (temp[0]!=10000000) {
+                        amountsArray.add(temp);
+                    }
+                }
             }
+            int[] temp = new int[1];
+            temp[0]=10000000;
             int minCount = 1000000;
-            for (int[] amountArray : amountArray) {
+            for (int[] amountArray : amountsArray) {
                 int count = 0;
                 for (int i = 0; i < amountArray.length; i++) {
                     count+=amountArray[i];
                 }
                 if (count < minCount) {
-                    amounts=amountArray;
+                    temp=amountArray;
                     minCount=count;
                 }
             }
+            return temp;
+        } else {
+            return amounts;
         }
-        return amounts;
     }
 }
