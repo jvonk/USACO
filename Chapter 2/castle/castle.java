@@ -57,10 +57,10 @@ public class castle {
         System.out.println(component);
         for (int i = 0; i < component.size(); i++) {
             components[component.get(i)]++;
-            System.out.print(components[component.get(i)] + " ");
         }
         int max = 0;
         for (int i = 0; i < components.length; i++) {
+            System.out.println("@@"+components[i]);
             if (components[i] > max) {
                 max = components[i];
             }
@@ -68,6 +68,7 @@ public class castle {
         out.println(max);
         int maxi = 0;
         int maxj = 0;
+        List<List<Integer>> results = new ArrayList<List<Integer>>();
         for (int i = 0; i < connections.length; i++) {
             for (int j = 0; j < connections.length; j++) {
                 if (i != j && (component.get(i) != component.get(j))) {
@@ -75,25 +76,58 @@ public class castle {
                         int newMax = components[component.get(i)] + components[component.get(j)];
                         if (newMax >= max) {
                             max = newMax;
-                            maxi = i;
-                            maxj = j;
+                            List<Integer> temp = new ArrayList<Integer>();
+                            temp.add(max);
+                            temp.add(i);
+                            temp.add(j);
+                            results.add(temp);
                         }
                     }
                 }
             }
         }
         out.println(max);
-        System.out.println("\n" + maxi + " " + maxj);
-        if (maxj == maxi - 1) {
-            int x = maxj % width + 1;
-            int y = maxj / width + 1;
-            out.print(y + " " + x);
-            out.println(" E");
-        } else if (maxj == maxi + width) {
-            int x = maxj % width + 1;
-            int y = maxj / width + 1;
-            out.print(y + " " + x);
-            out.println(" N");
+        for (int i = 0; i < results.size(); i++) {
+            if(results.get(i).get(0)==max) {
+                System.out.println(results.get(i));
+                List<Integer> temp = new ArrayList<Integer>();
+                int mi = results.get(i).get(1);
+                int mj = results.get(i).get(2);
+                if (mj == mi - 1) {
+                    int x = mj % width + 1;
+                    int y = mj / width + 1;
+                    temp.add(y);
+                    temp.add(x);
+                    temp.add(0);
+                } else if (mj == mi + width) {
+                    int x = mj % width + 1;
+                    int y = mj / width + 1;
+                    temp.add(y);
+                    temp.add(x);
+                    temp.add(1);
+                }
+                results.set(i, temp);
+            } else {
+                results.remove(i);
+            }
+        }
+        List<Integer> res = new ArrayList<Integer>();
+        res.addAll(results.get(0));
+        for (List<Integer> result : results) {
+            System.out.println(result);
+            if (result.get(1)<res.get(1)) {
+                res=result;
+            } else if (result.get(1)==res.get(1) && result.get(0) < res.get(0)) {
+                res=result;
+            } else if (result.get(0)==res.get(0) && result.get(1) == res.get(1) && result.get(2)==1) {
+                res=result;
+            }
+        }
+        out.print(res.get(0)+" "+res.get(1)+" ");
+        if (res.get(2)==1) {
+            out.println("N");
+        } else {
+            out.println("E");
         }
         br.close();
         out.close();
