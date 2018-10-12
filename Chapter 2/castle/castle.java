@@ -66,9 +66,7 @@ public class castle {
             }
         }
         out.println(max);
-        int maxi = 0;
-        int maxj = 0;
-        List<List<Integer>> results = new ArrayList<List<Integer>>();
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
         for (int i = 0; i < connections.length; i++) {
             for (int j = 0; j < connections.length; j++) {
                 if (i != j && (component.get(i) != component.get(j))) {
@@ -80,51 +78,56 @@ public class castle {
                             temp.add(max);
                             temp.add(i);
                             temp.add(j);
-                            results.add(temp);
+                            result.add(temp);
                         }
                     }
                 }
             }
         }
         out.println(max);
-        for (int i = 0; i < results.size(); i++) {
-            if(results.get(i).get(0)==max) {
-                System.out.println(results.get(i));
-                List<Integer> temp = new ArrayList<Integer>();
-                int mi = results.get(i).get(1);
-                int mj = results.get(i).get(2);
+        int[][] results = new int[result.size()][3];
+
+        for (int i = 0; i < result.size(); i++) {
+            if(result.get(i).get(0)==max) {
+                System.out.println(result.get(i));
+                int[] temp = new int[3];
+                int mi = result.get(i).get(1);
+                int mj = result.get(i).get(2);
                 if (mj == mi - 1) {
                     int x = mj % width + 1;
                     int y = mj / width + 1;
-                    temp.add(y);
-                    temp.add(x);
-                    temp.add(0);
+                    temp[0]=y;
+                    temp[1]=x;
+                    temp[2]=0;
                 } else if (mj == mi + width) {
                     int x = mj % width + 1;
                     int y = mj / width + 1;
-                    temp.add(y);
-                    temp.add(x);
-                    temp.add(1);
+                    temp[0]=y;
+                    temp[1]=x;
+                    temp[2]=1;
                 }
-                results.set(i, temp);
+                results[i]=temp;
             } else {
-                results.remove(i);
+                results[i]=new int[] {10000, 10000, 10000};
             }
         }
-        List<Integer> res = new ArrayList<Integer>();
-        res.addAll(results.get(0));
-        for (List<Integer> result : results) {
-            System.out.println(result);
-            if (result.get(1)<res.get(1)) {
-                res=result;
-            } else if (result.get(1)==res.get(1) && result.get(0) < res.get(0)) {
-                res=result;
-            } else if (result.get(0)==res.get(0) && result.get(1) == res.get(1) && result.get(2)==1) {
-                res=result;
+        int[] res = new int[3];
+        res=results[0];
+        System.out.println(res);
+        for (int[] resu : results) {
+            System.out.println(resu[0]+" "+resu[1]+" "+resu[2]);
+            if (resu[0]!=10000) {
+                if (resu[1]<res[1]) {
+                    res=resu;
+                } else if (resu[1]==res[1] && resu[0] > res[0]) {
+                    res=resu;
+                } else if (resu[0]==res[0] && resu[1] == res[1] && resu[2]==1) {
+                    res=resu;
+                }
             }
         }
-        out.print(res.get(0)+" "+res.get(1)+" ");
-        if (res.get(2)==1) {
+        out.print(res[0]+" "+res[1]+" ");
+        if (res[2]==1) {
             out.println("N");
         } else {
             out.println("E");

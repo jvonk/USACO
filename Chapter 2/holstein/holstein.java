@@ -13,75 +13,107 @@ public class holstein {
         long startTime = System.currentTimeMillis();
         BufferedReader br = new BufferedReader(new FileReader("holstein.in"));
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("holstein.out")));
+
         // Line 1: integer V (1 <= V <= 25), the number of types of vitamins
-        int V = Integer.parseInt(br.readLine());
-        int[] vitamins = new int[V];
-        // Line 2: V integers (1 <= each one <= 1000), the minimum requirement for each of the V vitamins that a cow requires each day
+        V = Integer.parseInt(br.readLine());
+        min = new int[V];
+
+        // Line 2: V integers (1 <= each one <= 1000), the minimum requirement for each
+        // of the V vitamins that a cow requires each day
         StringTokenizer line = new StringTokenizer(br.readLine());
         for (int i = 0; i < V; i++) {
-            vitamins[i]=Integer.parseInt(line.nextToken());
-            System.out.print(vitamins[i]+" ");
+            min[i] = Integer.parseInt(line.nextToken());
+            System.out.print(min[i] + " ");
         }
         System.out.println();
+
         // Line 3: integer G (1 <= G <= 15), the number of types of feeds available
-        int G = Integer.parseInt(br.readLine());
-        int[][] feeds = new int[G][V];
-        // Lines 4..G+3: V integers (0 <= each one <= 1000), the amount of each vitamin that one scoop of this feed contains. The first line of these G lines describes feed #1; the second line describes feed #2; and so on.
+        G = Integer.parseInt(br.readLine());
+
+        feeds = new int[G][V];
+        // Lines 4..G+3: V integers (0 <= each one <= 1000), the amount of each vitamin
+        // that one scoop of this feed contains. The first line of these G lines
+        // describes feed #1; the second line describes feed #2; and so on.
         for (int i = 0; i < G; i++) {
             line = new StringTokenizer(br.readLine());
             for (int j = 0; j < V; j++) {
-                feeds[i][j]=Integer.parseInt(line.nextToken());
-                System.out.print(feeds[i][j]+" ");
+                feeds[i][j] = Integer.parseInt(line.nextToken());
+                System.out.print(feeds[i][j] + " ");
             }
             System.out.println();
         }
+        System.out.println();
+
         br.close();
-        int[] temp = new int[V];
-        int[] temp2 = new int[G];
-        int[] results = solve(feeds, vitamins, temp, temp2, -1);
-        for (int result : results) {
-            out.println(result);
+
+        best = null;
+        bestCount = Integer.MAX_VALUE;
+        solve(0, new boolean[G], 0, new int[V]);
+
+        out.print(bestCount + " ");
+        List<Integer> results = new ArrayList<Integer>();
+        for (int i = 0; i < best.length; i++) {
+            if (best[i]) {
+                results.add(i+1);
+            }
+        }
+        for (int i = 0; i < results.size(); i++) {
+            if (i<results.size()-1) {
+                out.print(results.get(i)+" ");
+            } else {
+                out.println(results.get(i));
+            }
         }
         out.close();
         System.out.println(System.currentTimeMillis() - startTime);
     }
-    public static int[] solve(int[][] feeds, int[] vitamins, int[] totals, int[] amounts, int which) {
-        boolean works = true;
-        if (which>-1) {
-            amounts[which]++;
-            for (int i = 0; i < feeds[which].length; i++) {
-                totals[i]=feeds[which][i]*amounts[which];
-                if (totals[i]<vitamins[i]) {
-                    works=false;
+
+    static int[] min;
+    static int[][] feeds;
+    static int V, G;
+
+    static boolean[] best;
+    static int bestCount;
+
+    public static void solve(int current, boolean[] done, int count, int[] visited) {
+        if (current == done.length) {
+            for (int i = 0; i < V; i++) {
+                if (visited[i] < min[i]) {
+                    return;
                 }
             }
+            if (compare(done, count)) {
+                bestCount = count;
+                best = done.clone();
+            }
+            return;
         }
-        if(!works) {
-            List<int[]> amountsArray = new ArrayList<int[]>();
-            if(which>-1) {
-                for (int i = 0; i < feeds[which].length; i++) {
-                    int[] temp = solve(feeds, vitamins, totals, amounts, i);
-                    if (temp[0]!=10000000) {
-                        amountsArray.add(temp);
-                    }
-                }
-            }
-            int[] temp = new int[1];
-            temp[0]=10000000;
-            int minCount = 1000000;
-            for (int[] amountArray : amountsArray) {
-                int count = 0;
-                for (int i = 0; i < amountArray.length; i++) {
-                    count+=amountArray[i];
-                }
-                if (count < minCount) {
-                    temp=amountArray;
-                    minCount=count;
-                }
-            }
-            return temp;
+        solve(current + 1, done, count, visited);
+        for (int i = 0; i < V; i++) {
+            visited[i] += feeds[current][i];
+        }
+        done[current] = true;
+        solve(current + 1, done, count + 1, visited);
+        for (int i = 0; i < V; i++) {
+            visited[i] -= feeds[current][i];
+        }
+        done[current] = false;
+    }
+
+    public static boolean compare(boolean[] done, int count) {
+        if (count < bestCount) {
+            return true;
+        } else if (count > bestCount) {
+            return false;
         } else {
-            return amounts;
+            for (int i = 0; i < G; i++) {
+                if (done[i] && !best[i]) {
+                    return true;
+                } else if (!done[i] && best[i]) {
+                    return false;
+                }
+            }
+            return false;
         }
     }
 }
