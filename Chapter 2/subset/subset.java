@@ -9,43 +9,38 @@ import java.io.*;
 import java.util.*;
 
 public class subset {
+    static long[][] results;
+
     public static void main(String[] args) throws Exception {
         long startTime = System.currentTimeMillis();
         BufferedReader br = new BufferedReader(new FileReader("subset.in"));
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("subset.out")));
-        N = Integer.parseInt(br.readLine());
-        max =  N*(N+1)/4;
-        int total = 0;
-        boolean[] used = new boolean[N];
-        for (int i = 0; i < N; i++) {
-            used[i]=false;
+        int N = Integer.parseInt(br.readLine());
+        int target = N * (N + 1) / 2;
+        results = new long[target / 2 + 1][N + 1];
+        for (int i = 0; i < results.length; i++) {
+            Arrays.fill(results[i], -1);
         }
-        total = solve(total, new boolean[N], 0, new int[N]);
-        System.out.println(total);
+        if (target % 2 != 0) {
+            out.println("0");
+        } else {
+            out.println(f(target / 2, N) / 2);
+        }
         br.close();
         out.close();
         System.out.println(System.currentTimeMillis() - startTime);
     }
-    static int N;
-    static int max;
-    public static int solve(int total, boolean[] used, int count, int[] visited) {
-        int i = 1;
-        for (; i <= N; i++) {
-            if(!used[i-1]) {
-                System.out.println(i);
-                if (count<N-1) {
-                    visited[count]=i;
-                    int t=total+i;
-                    used[i-1]=true;
-                    t=solve(t, used, count+1, visited);
-                    if (t<total) {
-                        total=t;
-                    }
-                } else {
-                    return total+i;                    
-                }
-            }
+
+    public static long f(int n, int k) {
+        if (n < 0 || k < 0) {
+            return 0;
         }
-        return total;
+        if (results[n][k] != -1) {
+            return results[n][k];
+        }
+        if (n == 0 && k == 0) {
+            return 1;
+        }
+        return results[n][k]=f(n, k - 1) + f(n - k, k - 1);
     }
 }
