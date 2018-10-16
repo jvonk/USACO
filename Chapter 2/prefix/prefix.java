@@ -16,16 +16,13 @@ public class prefix {
         List<String> primitives = new ArrayList<>();
         String line = "";
         int maxPrim = 0;
-        boolean works = false;
         while ((line = br.readLine()) != null) {
             if (line.equals("."))
                 break;
             StringTokenizer l = new StringTokenizer(line);
             while (l.hasMoreTokens()) {
                 String temp = l.nextToken();
-                if (!works && primitives.size()>6)
-                    works = true;
-                if (works || solve(temp, primitives)<temp.length()) {
+                if (solve(temp, primitives)<temp.length()) {
                     primitives.add(temp);
                 }
             }
@@ -49,12 +46,13 @@ public class prefix {
          * }
          */
         System.out.println(primitives);
-        String S = "";
-        while ((line = br.readLine()) != null) {
-            S += line;
-        }            
         System.out.println(System.currentTimeMillis() - startTime);
-        out.println(solve(S, primitives));
+        StringBuilder S = new StringBuilder();
+        while ((line = br.readLine()) != null) {
+            S.append(line);
+        }
+        System.out.println(System.currentTimeMillis() - startTime);
+        out.println(solve(S.toString(), primitives));
         br.close();
         out.close();
         System.out.println(System.currentTimeMillis() - startTime);
