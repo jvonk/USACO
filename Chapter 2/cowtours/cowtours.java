@@ -26,12 +26,10 @@ public class maze1 {
         // create input BufferedReader from file
         BufferedReader br = new BufferedReader(new FileReader("maze1.in"));
 
-        for (int i = 0; i < 10; i++) {
-            char[] line = br.readLine().toCharArray();
-            for (int j = 0; j < 10; j++) {
+        int N = Integer.parseInt(br.readLine());
 
-            }
-        }
+        
+
         br.close();
 
         // create PrintWriter to output results
