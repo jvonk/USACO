@@ -76,7 +76,7 @@ public class ttwo {
             for (int i = 0; i < cowXs.size(); i++) {
                 x = cowXs.get(i) + dirX[cowDirs.get(i)];
                 y = cowYs.get(i) + dirY[cowDirs.get(i)];
-                if (x >= 10 || x < 0 || y >= 10 || y < 0 || grid[y][x] == '*') {
+                if (x >= 10 || x < 0 || y >= 10 || y < 0 || grid[y][x] == '*' || grid[y][x] == 'C') {
                     cowDirs.set(i, (cowDirs.get(i) + 1) % 4);
                 } else {
                     cowXs.set(i, x);
@@ -86,7 +86,7 @@ public class ttwo {
                     works = true;
                 }
             }
-            if (minutes > 1000) {
+            if (minutes > 100000) {
                 break;
             }
             minutes++;
@@ -95,10 +95,10 @@ public class ttwo {
 
         // create PrintWriter to output results
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("ttwo.out")));
-        if (minutes!=1001)
-        out.println(minutes);
+        if (works)
+            out.println(minutes);
         else
-        out.println(0);
+            out.println(0);
         out.close();
         // print final time taken
         System.out.println(System.currentTimeMillis() - startTime);
