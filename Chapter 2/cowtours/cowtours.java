@@ -2,7 +2,7 @@
 /*
 ID: 100021881
 LANG: JAVA
-PROG: maze1
+PROG: cowtours
 */
 
 // if you want to turn all the debug on, just find and replace "// DEBUG " with nothing
@@ -18,22 +18,49 @@ import java.util.StringTokenizer;
 import java.util.List;
 import java.util.ArrayList;
 
-public class maze1 {
+public class cowtours {
     public static void main(String[] args) throws Exception {
         // set startTime to measure how long the program takes
         long startTime = System.currentTimeMillis();
 
         // create input BufferedReader from file
-        BufferedReader br = new BufferedReader(new FileReader("maze1.in"));
+        BufferedReader br = new BufferedReader(new FileReader("cowtours.in"));
 
         int N = Integer.parseInt(br.readLine());
 
-        
+        int[] pastureXs = new int[N];
+        int[] pastureYs = new int[N];
+        Node[] pastures = new Node[N];
+        for (int i = 0; i < N; i++) {
+            StringTokenizer line = new StringTokenizer(br.readLine());
+            pastureXs[i]=Integer.parseInt(line.nextToken());
+            pastureYs[i]=Integer.parseInt(line.nextToken());
+            pastures[i]=new Node();
+        }
+        for (int i = 0; i < N; i++) {
+            char[] line = br.readLine().toCharArray();
+            pastures[i]=new Node();
+            for (int j = 0; j < N; j++) {
+                if (line[j]=='1') {
+                    pastures[i].edges.add(new Edge(j, Math.sqrt(Math.pow(pastureXs[j]-pastureXs[i], 2) + Math.pow(pastureYs[j]-pastureYs[i], 2))));                    
+                }
+            }
+        }
 
         br.close();
-
+        for (int i = 0; i < N; i++) {
+            Node[] temp =dijkstra(pastures, pastures[i]);
+            for (int j = 0; j < N; j++) {
+                if (temp[j].distance>pastures[j].distance) {
+                    pastures[j].distance=temp[j].distance;
+                }
+            }            
+        }
+        for (int i = 0; i < N; i++) {
+            System.out.println(pastures[i].distance);
+        }
         // create PrintWriter to output results
-        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("maze1.out")));
+        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("cowtours.out")));
         
         out.close();
         // print final time taken
@@ -51,7 +78,7 @@ public class maze1 {
         while(numVisited<nodes.length) {
             // find unvisited vertex with min distance to source; call it vertex i
             int mini = 0;
-            int min = Integer.MAX_VALUE;
+            double min = Float.MAX_VALUE;
             for (int i=0; i < nodes.length; i++) {
                 if (!nodes[i].visited && nodes[i].distance < min) {
                     mini=i;
@@ -74,28 +101,28 @@ public class maze1 {
 
     public static class Edge {
         int destination;
-        int weight;
+        double weight;
 
-        public Edge(int destination, int weight) {
+        public Edge(int destination, double weight) {
             this.destination = destination;
             this.weight = weight;
         }
     }
 
     public static class Node {
-        int distance;
+        double distance;
         boolean visited;
         int parent;
         List<Edge> edges = new ArrayList<>();
 
-        public Node(int distance, boolean visited, int parent) {
+        public Node(double distance, boolean visited, int parent) {
             this.distance = distance;
             this.visited = visited;
             this.parent = parent;
         }
 
         public Node() {
-            this.distance = Integer.MAX_VALUE;
+            this.distance = Double.MAX_VALUE;
             this.visited = false;
             this.parent = -1;
         }
