@@ -27,9 +27,9 @@ public class comehome {
         BufferedReader br = new BufferedReader(new FileReader("comehome.in"));
 
         int P = Integer.parseInt(br.readLine());
-        boolean[] hasCow = new boolean[26];
-        Node[] pastures = new Node[26];
-        for (int i = 0; i < 26; i++) {
+        boolean[] hasCow = new boolean[52];
+        Node[] pastures = new Node[52];
+        for (int i = 0; i < 52; i++) {
             pastures[i] = new Node();
         }
         for (int i = 0; i < P; i++) {
@@ -41,8 +41,9 @@ public class comehome {
                 if (t != 'Z') {
                     hasCow[first] = true;
                 }
-            } else {
-                first = t - 'a';
+            } else if (t >= 'a' && t <= 'z') {
+                first = t - 'a' + 26;
+                hasCow[first] = true;
             }
             t = line.nextToken().charAt(0);
             int second = -1;
@@ -51,8 +52,9 @@ public class comehome {
                 if (t != 'Z') {
                     hasCow[second] = true;
                 }
-            } else {
-                second = t - 'a';
+            } else if (t >= 'a' && t <= 'z') {
+                second = t - 'a' + 26;
+                hasCow[second] = true;
             }
             int distance = Integer.parseInt(line.nextToken());
             pastures[first].edges.add(new Edge(second, distance));
@@ -63,13 +65,12 @@ public class comehome {
         int min = Integer.MAX_VALUE;
         int minPasture = -1;
         for (int i = 0; i < 25; i++) {
-            if (pastures[i].distance != Integer.MAX_VALUE) {
-                System.out.println((char) (i + 'A') + " " + hasCow[i] + " " + pastures[i].distance);
-                if (hasCow[i] && pastures[i].distance < min) {
-                    min = pastures[i].distance;
-                    minPasture = i;
-                }
+            System.out.println((char) (i + 'A') + " " + hasCow[i] + " " + pastures[i].distance);
+            if (hasCow[i] && pastures[i].distance < min) {
+                min = pastures[i].distance;
+                minPasture = i;
             }
+
         }
 
         // create PrintWriter to output results

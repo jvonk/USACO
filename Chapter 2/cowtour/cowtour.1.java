@@ -90,8 +90,6 @@ public class cowtour {
                     double temp1 = Math.abs(distances[i]);
                     double temp2 = Math.abs(distances[j]);
                     double temp = temp1 + temp2 + Math.sqrt( Math.pow(pastureXs[j] - pastureXs[i], 2.0) + Math.pow(pastureYs[j] - pastureYs[i], 2.0) );
-                    //if (N>149)
-                        temp = Math.min(temp, Math.max(temp1, temp2));
                     if (diameter > temp) {
                         maxi = i;
                         maxj= j;
@@ -99,6 +97,12 @@ public class cowtour {
                         System.out.println(maxi+" "+distances[i]+"\t"+maxj+" "+distances[j]+"\t"+diameter);
                     }
                 }
+            }
+
+        }
+        for (int i = 0; i < N; i++) {
+            if (distances[i]>diameter) {
+                diameter = distances[i];
             }
         }
         System.out.println(diameter+"\t"+maxi+"\t"+maxj);

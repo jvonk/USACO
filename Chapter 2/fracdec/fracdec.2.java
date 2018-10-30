@@ -34,8 +34,7 @@ public class fracdec {
 
         br.close();
 
-
-
+;
         int remainderN = N % D;
         int wholeN = N - remainderN;
         StringBuilder str = new StringBuilder();
