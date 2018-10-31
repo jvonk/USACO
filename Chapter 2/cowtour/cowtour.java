@@ -18,6 +18,11 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class cowtour {
+    private static int[][] adjacent;
+    private static int[][] location;
+    private static int[] visited;
+    private static int N;
+
     public static void main(String[] args) throws Exception {
         // set startTime to measure how long the program takes
         long startTime = System.currentTimeMillis();
@@ -25,160 +30,110 @@ public class cowtour {
         // create input BufferedReader from file
         BufferedReader br = new BufferedReader(new FileReader("cowtour.in"));
 
-        int N = Integer.parseInt(br.readLine());
+        N = Integer.parseInt(br.readLine());
 
-        int[] pastureXs = new int[N];
-        int[] pastureYs = new int[N];
-        Node[] pastures = new Node[N];
+
+        location = new int[N][2];
         for (int i = 0; i < N; i++) {
             StringTokenizer line = new StringTokenizer(br.readLine());
-            pastureXs[i] = Integer.parseInt(line.nextToken());
-            pastureYs[i] = Integer.parseInt(line.nextToken());
-            pastures[i] = new Node();
+            location[i][0] = Integer.parseInt(line.nextToken());
+            location[i][1] = Integer.parseInt(line.nextToken());
         }
+        
+        adjacent = new int[N][N];
+
         for (int i = 0; i < N; i++) {
-            char[] line = br.readLine().toCharArray();
-            pastures[i] = new Node();
+            char[] lineArray = br.readLine().toCharArray();
             for (int j = 0; j < N; j++) {
-                if (line[j] == '1') {
-                    pastures[i].edges.add(new Edge(j, Math.sqrt(
-                            Math.pow(pastureXs[j] - pastureXs[i], 2.0) + Math.pow(pastureYs[j] - pastureYs[i], 2.0))));
-                }
+                adjacent[i][j] = lineArray[j]-'0';
             }
         }
 
         br.close();
-        int[] designations = new int[N];
-        double[] distances = new double[N];
-        Arrays.fill(designations, -1);
-        Arrays.fill(distances, -1);
+
+        visited = new int[N];
+        Arrays.fill(visited, -1);
 
         for (int i = 0; i < N; i++) {
-            // DEBUG for (int k = 0; k < pastures[i].edges.size(); k++) {
-            // DEBUG System.out.println(
-            // DEBUG i + " " + pastures[i].edges.get(k).destination + " " +
-            // DEBUG pastures[i].edges.get(k).weight);
-            // DEBUG }
-            Node[] tem = pastures.clone();
-            Node[] temp = dijkstra(tem, tem[i]);
-            for (int j = 0; j < N; j++) {
-                if (i != j) {
-                    // DEBUG if (i == 6 && j==1) {
-                    // DEBUG System.out.println(temp[j].distance+"\n\n");
-                    // DEBUG }
-                    if (temp[j].distance == Double.MAX_VALUE) {
-                        if (designations[j] == -1) {
-                            designations[j] = i;
-                        }
-                    } else if (temp[j].distance > distances[j]) {
-                        distances[j] = temp[j].distance;
-                    }
-                }
-            }
+            solve(i, i);
         }
-        // DEBUG for (int i = 0; i < N; i++) {
-        // DEBUG System.out.println(i + "\t" + designations[i] + "\t" + distances[i]);
-        // DEBUG }
-        double diameter = Double.MAX_VALUE;
-        double[] diameters = new double[N];
-        Arrays.fill(diameters, Double.MAX_VALUE);
-        int maxi = -1;
-        int maxj = -1;
+
+        double[][] adjacencyMatrix = new double[N][N];
+
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                if (designations[i] != designations[j]) {
-                    double temp1 = Math.abs(distances[i]);
-                    double temp2 = Math.abs(distances[j]);
-                    double temp = temp1 + temp2 + Math.sqrt( Math.pow(pastureXs[j] - pastureXs[i], 2.0) + Math.pow(pastureYs[j] - pastureYs[i], 2.0) );
-                    //if (N>149)
-                        temp = Math.min(temp, Math.max(temp1, temp2));
-                    if (diameter > temp) {
-                        maxi = i;
-                        maxj= j;
-                        diameter=temp;
-                        System.out.println(maxi+" "+distances[i]+"\t"+maxj+" "+distances[j]+"\t"+diameter);
-                    }
+                if (i==j) {
+                    adjacencyMatrix[i][j]=0;
+                } else if (adjacent[i][j]==1) {
+                    adjacencyMatrix[i][j]=Math.hypot(location[j][0]-location[i][0], location[j][1]-location[i][1]);
+                } else {
+                    adjacencyMatrix[i][j]=Double.MAX_VALUE;
                 }
             }
         }
-        System.out.println(diameter+"\t"+maxi+"\t"+maxj);
-        // create PrintWriter to output results
+
+        adjacencyMatrix=floyd(adjacencyMatrix);
+
+        double min = Double.MAX_VALUE;
+
+        for (int i = 0; i < N; i++) {
+            for (int j = i+1; j < N; j++) {
+                if (visited[i]==visited[j]) {
+                    continue;
+                }
+                double distance = Math.hypot(location[j][0]-location[i][0], location[j][1]-location[i][1]);
+                double max = 0;
+                inner: for (int k = 0; k < N; k++) {
+                    if (visited[k]!=visited[i]&&visited[k]!=visited[j]) {
+                        continue;
+                    }
+                    for (int m = k+1; m < N; m++) {
+                        if (visited[m]!=visited[i]&&visited[m]!=visited[j] || adjacencyMatrix[k][m] < max) {
+                            continue;
+                        }
+                        if (visited[i]==visited[k]) {
+                            max = Math.max(max, Math.min(adjacencyMatrix[k][m], distance+adjacencyMatrix[k][i]+adjacencyMatrix[j][m]));
+                        } else {
+                            max = Math.max(max, Math.min(adjacencyMatrix[k][m], distance+adjacencyMatrix[k][j]+adjacencyMatrix[i][m]));
+                        }
+                        if (max > min) {
+                            break inner;
+                        }
+                    }
+                }
+                min = Math.min(min, max);
+            }
+        }
+
+        String result = String.format("%.6f", min);
+        while (result.length()-result.indexOf('.')<6) {
+            result+="0";
+        }
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("cowtour.out")));
-        out.format("%.6f",Math.abs(diameter)); 
-        out.println();
+        out.println(result);
         out.close();
         // print final time taken
         System.out.println(System.currentTimeMillis() - startTime);
     }
-
-    public static Node[] dijkstra(Node[] nodes, Node source) {
-        // distance(j) is distance from source vertex to vertex j
-        // parent(j) is the vertex that precedes vertex j in any shortest path (to
-        // reconstruct the path subsequently)
-
-        for (int i = 0; i < nodes.length; i++) {
-            nodes[i].set();
+    private static void solve (int current, int number) {
+        if (visited[current]!=-1) {
+            return; //already visited
         }
-        source.distance = 0;
-        source.parent = -1;
-
-        int numVisited = 0;
-        while (numVisited < nodes.length) {
-            // find unvisited vertex with min distance to source; call it vertex i
-            int mini = 0;
-            double min = Double.MAX_VALUE;
-            for (int i = 0; i < nodes.length; i++) {
-                if (!nodes[i].visited && nodes[i].distance < min) {
-                    mini = i;
-                    min = nodes[i].distance;
-                }
+        visited[current]=number;
+        for (int i = 0; i < N; i++) {
+            if (adjacent[current][i]==1) {
+                solve(i, number); // try every connected one
             }
-            nodes[mini].visited = true;
-
-            for (int i = 0; i < nodes[mini].edges.size(); i++) {
-                Edge edge = nodes[mini].edges.get(i);
-                if (nodes[mini].distance + edge.weight < nodes[edge.destination].distance) {
-                    nodes[edge.destination].distance = nodes[mini].distance + edge.weight;
-                    nodes[edge.destination].parent = i;
-                }
-            }
-            numVisited++;
-        }
-        return nodes;
-    }
-
-    public static class Edge {
-        int destination;
-        double weight;
-
-        public Edge(int destination, double weight) {
-            this.destination = destination;
-            this.weight = weight;
         }
     }
-
-    public static class Node {
-        double distance;
-        boolean visited;
-        int parent;
-        List<Edge> edges = new ArrayList<>();
-
-        public Node(double distance, boolean visited, int parent) {
-            this.distance = distance;
-            this.visited = visited;
-            this.parent = parent;
+    public static double[][] floyd (double[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                for (int k = 0; k < matrix.length; k++) {
+                    matrix[j][k]=Math.min(matrix[j][k], matrix[j][i]+matrix[i][k]);
+                }
+            }
         }
-
-        public Node() {
-            this.distance = Double.MAX_VALUE;
-            this.visited = false;
-            this.parent = -1;
-        }
-
-        public void set() {
-            this.distance = Double.MAX_VALUE;
-            this.visited = false;
-            this.parent = -1;
-        }
+        return matrix;
     }
 }
