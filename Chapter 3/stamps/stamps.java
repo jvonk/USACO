@@ -53,7 +53,7 @@ public class stamps {
             finished=true;
             for (int i = 0; i < N; i++) {
                 //for each coin
-                for (int j = 0; j < minimums.length; j++) {
+                for (int j = 0; j+coins[i] < minimums.length; j++) {
                     int newer = minimums[j]+1;
                     if (newer>K) {
                         continue;
@@ -66,9 +66,15 @@ public class stamps {
                 }
             }
         }
+        int i = 1;
+        for (; i < minimums.length; i++) {
+            if (minimums[i]!=0) {
+                break;
+            }
+        }
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("stamps.out")));
 
-
+        out.println(i-1);
         
         out.close();
 
