@@ -33,24 +33,38 @@ public class inflate {
         int N = Integer.parseInt(l.nextToken()); // number of problem classes
         
 
-        TreeMap<Integer, Category> sorter = new TreeMap<>();
+        TreeMap<Double, Category> sorter = new TreeMap<>();
         for (int i = 0; i < N; i++) {
             l = new StringTokenizer(br.readLine());
-            sorter.put(i, new Category(Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken())));
+            Category temp = new Category(Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken()));
+            double j = 0;
+            while (sorter.containsKey(temp.value+j)) {
+                j+=0.00001;
+            }
+            sorter.put(temp.value+j, temp);
         }
         br.close();
-
         Category[] categories = new Category[N];
-        
-        Iterator<Category> it = sorter.values().iterator();
-        int counter = 0;
-        while(it.hasNext()) {
-            categories[i]=it.next();
-            i++;
+        List<Category> toArr = new ArrayList<>();
+        toArr.addAll(sorter.values());
+        for (int i = 0; i < N; i++) {
+            categories[i]=toArr.get(i);
+            System.out.println(categories[i].points+"\t"+categories[i].minutes+"\t"+categories[i].value);
         }
 
+
+        int total = 0;
+        int points = 0;
+        for (int i = 0; i < N; i++) {
+            int j;
+            for (j = 0; total+categories[i].minutes*j<=N; j++) {}
+            total+=j*categories[i].minutes;
+            points+=j*categories[i].points;
+        }
+
+
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("inflate.out")));
-        out.println(categories.toString());
+        out.println(points);
         out.close();
         // print final time taken
         System.out.println(System.currentTimeMillis() - startTime);
@@ -62,7 +76,7 @@ public class inflate {
         public Category (int p, int m) {
             points=p;
             minutes=m;
-            value=p/m;
+            value=1.0*m/p;
         }
     }
 }
