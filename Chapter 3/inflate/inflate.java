@@ -15,9 +15,10 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.StringTokenizer;
-import java.util.function.ToIntFunction;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.TreeMap;
+import java.util.HashMap;
 
 public class inflate {
     public static void main(String[] args) throws Exception {
@@ -31,25 +32,25 @@ public class inflate {
         int M = Integer.parseInt(l.nextToken()); // contest minutes
         int N = Integer.parseInt(l.nextToken()); // number of problem classes
         
-        Category[] categories = new Category[N];
 
+        TreeMap<Integer, Category> sorter = new TreeMap<>();
         for (int i = 0; i < N; i++) {
             l = new StringTokenizer(br.readLine());
-            categories[i]=new Category(Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken()));            
+            sorter.put(i, new Category(Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken())));
         }
         br.close();
-        for (int i = 0; i < N; i++) {
-            System.out.println(categories[i]);
-        }
-        
-        for (int i = 0; i < N; i++) {
-            System.out.println(categories[i]);
-        }
 
+        Category[] categories = new Category[N];
         
+        Iterator<Category> it = sorter.values().iterator();
+        int counter = 0;
+        while(it.hasNext()) {
+            categories[i]=it.next();
+            i++;
+        }
 
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("inflate.out")));
-
+        out.println(categories.toString());
         out.close();
         // print final time taken
         System.out.println(System.currentTimeMillis() - startTime);
@@ -62,9 +63,6 @@ public class inflate {
             points=p;
             minutes=m;
             value=p/m;
-        }
-        public boolean compareTo(Category other) {
-            return (this.value>other.value);
         }
     }
 }
