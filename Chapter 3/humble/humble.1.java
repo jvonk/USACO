@@ -46,20 +46,31 @@ public class humble {
         br.close();
         
         List<Integer> humbles = new ArrayList<>();
-        for (int i = 2; humbles.size() < N; i++) {
-            int num = i;
-            for (int prime : S) {
-                while (num % prime == 0) {
-                    num /= prime;
-                }
-            }
-            if (num==1) {
-                humbles.add(num);
+        humbles.add(1);
+        for (int k = 0; k < 3; k++) 
+        for (int i = 0; i < K; i++) {
+            int len = humbles.size();
+            for (int j = 0; j < len; j++) {
+                humbles.add(S[i]*humbles.get(j));
             }
         }
 
+        
+        TreeSet<Integer> results = new TreeSet<>();
+        results.addAll(humbles);
+        Iterator<Integer> it = results.iterator();
+        int i = 0;
+        int result = -1;
+        while(it.hasNext()) {
+            if (i==N) {
+                break;
+            }
+            result=it.next();
+            i++;
+        }
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("humble.out")));
-        out.println(humbles.get(N-1));
+        out.println(result);
+        System.out.println(results.toString());
         out.close();
 
         // print final time taken
