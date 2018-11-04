@@ -46,18 +46,21 @@ public class inflate {
         br.close();
         Category[] categories = new Category[N];
         List<Category> toArr = new ArrayList<>();
+        System.out.println("points\tminutes\tvalue");
         toArr.addAll(sorter.values());
         for (int i = 0; i < N; i++) {
-            categories[i]=toArr.get(i);
+            categories[i]=toArr.get(N-i-1);
             System.out.println(categories[i].points+"\t"+categories[i].minutes+"\t"+categories[i].value);
         }
 
 
         int total = 0;
         int points = 0;
+        System.out.println("\ni\tj");
         for (int i = 0; i < N; i++) {
             int j;
-            for (j = 0; total+categories[i].minutes*j<=N; j++) {}
+            for (j = 0; total+categories[i].minutes*(j+1)<=M; j++) {}
+            System.out.println(i+"\t"+j);
             total+=j*categories[i].minutes;
             points+=j*categories[i].points;
         }
@@ -76,7 +79,7 @@ public class inflate {
         public Category (int p, int m) {
             points=p;
             minutes=m;
-            value=1.0*m/p;
+            value=1.0*p/m;
         }
     }
 }

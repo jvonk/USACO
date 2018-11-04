@@ -37,15 +37,20 @@ public class humble {
             S[i] = Integer.parseInt(l.nextToken());
 
         br.close();
+        System.out.println(System.currentTimeMillis() - startTime);
         
         List<Integer> humbles = new ArrayList<>();
         for (int i = 2; humbles.size() < N; i++) {
             int num = i;
-            for (int prime : S)
-                while (num % prime == 0)
+            for (int prime : S) {
+                if (num<prime) break;
+                while (num % prime == 0) {
                     num /= prime;
-            if (num==1)
+                }
+            }
+            if (num==1) {
                 humbles.add(i);
+            }
         }
         // DEBUG System.out.println(humbles.toString());
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("humble.out")));
