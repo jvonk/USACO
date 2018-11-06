@@ -82,9 +82,6 @@ public class contact {
             }
 
             totalPrinted++;
-            if (i!=max) {
-                out.println();
-            }
             out.println(i);
             for (int j = 0; j < results.get(i).size(); j++) {
                 out.print(Integer.toString(results.get(i).get(j), 2).substring(1));
@@ -96,8 +93,8 @@ public class contact {
                     out.print(" ");
                 }
             }
+            out.println();
         }
-        out.println();
         out.close();
 
         // print final time taken
