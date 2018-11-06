@@ -44,13 +44,7 @@ public class contact {
         br.close();
 
         int len = build.length();
-        //boolean[] data = new boolean[len];
         int[] totals = new int[(int)Math.pow(2, B+1)];
-        /*
-        for (int i = 0; i < N; i++) {
-            data[i] = build.charAt(i)=='1';        
-        }
-        */
 
         System.out.println("len: "+len);
         System.out.println("totals.length: "+totals.length);
@@ -74,20 +68,21 @@ public class contact {
         for (int i = 0; i <= max; i++) {
             results.add(new ArrayList<>());
         }
-        for (int i = (int)Math.max(2, Math.pow(2, A+1)); i < totals.length; i++) {
+        for (int i = (int)Math.max(2, Math.pow(2, A)); i < totals.length; i++) {
             results.get(totals[i]).add(i);
         }
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("contact.out")));
         int totalPrinted = 0;
-        for (int i = max; i >= 0; i--) {
+        for (int i = max; i > 0; i--) {
             if (totalPrinted>=N) {
                 break;
             }
             if (results.get(i).size()==0) {
                 continue;
             }
+
             totalPrinted++;
-            out.println("\n"+i);
+            out.println(i);
             for (int j = 0; j < results.get(i).size(); j++) {
                 out.print(Integer.toString(results.get(i).get(j), 2).substring(1));
                 if (j%6==5) {
@@ -98,6 +93,7 @@ public class contact {
                     out.print(" ");
                 }
             }
+            out.println();
         }
         
         out.close();
