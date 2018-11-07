@@ -39,22 +39,22 @@ public class humble {
         br.close();
         System.out.println(System.currentTimeMillis() - startTime);
         
-        int[] humbles = new int[N+1];
-        int[] next = new int[K];
-        humbles[0]=1;
-        for (int i = 1; i <= N; i++) {
-            int best = Integer.MAX_VALUE;
-            for (int j = 0; j < K; j++) {
-                while (next[j] < i && S[j]*humbles[next[j]] <= humbles[i-1] ) {
-                    next[j]++;
+        List<Integer> humbles = new ArrayList<>();
+        for (int i = 2; humbles.size() < N; i++) {
+            int num = i;
+            for (int prime : S) {
+                if (num<prime) break;
+                while (num % prime == 0) {
+                    num /= prime;
                 }
-                best=Math.min(best, S[j]*humbles[next[j]]);
             }
-            humbles[i]=best;
+            if (num==1) {
+                humbles.add(i);
+            }
         }
         // DEBUG System.out.println(humbles.toString());
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("humble.out")));
-        out.println(humbles[N]);
+        out.println(humbles.get(N-1));
         out.close();
 
         // print final time taken
