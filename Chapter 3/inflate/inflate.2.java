@@ -55,22 +55,27 @@ public class inflate {
             System.out.println(categories[i].points+"\t"+categories[i].minutes+"\t"+categories[i].value);
         }
 
-
-        int total = 0;
-        int points = 0;
-        System.out.println("\ni\tj");
-        for (int i = 0; i < N; i++) {
-            int j;
-            for (j = 0; total+categories[i].minutes*(j+1)<=M; j++) {}
-            System.out.println(i+"\t"+j);
-            total+=j*categories[i].minutes;
-            points+=j*categories[i].points;
+        int max = 0;
+        Deque<Category> bests = new LinkedList<Category>();
+        bests.add(new Category(0, 0, 0));
+        while (!bests.isEmpty()) {
+            Category best = bests.remove();
+            if (best.start>=N) {
+                if (best.points>max && best.minutes<M) {
+                    max = best.points;
+                }
+                continue;
+            }
+            int j = 0;
+            for (; best.minutes+categories[best.start].minutes*(j+1)<=M; j++) {}
+            for (int i = 0; i <= j; i++) {
+                bests.add(new Category(best.minutes + i*categories[best.start].minutes, best.points + i*categories[best.start].points, best.start+1));                
+            }
         }
+
         
-
-
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("inflate.out")));
-        out.println(points);
+        out.println(max);
         out.close();
         // print final time taken
         System.out.println(System.currentTimeMillis() - startTime);
