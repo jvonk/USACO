@@ -85,7 +85,7 @@ public class contact {
             out.println(i);
             for (int j = 0; j < results.get(i).size(); j++) {
                 out.print(Integer.toString(results.get(i).get(j), 2).substring(1));
-                if (j%6==5) {
+                if (j%6==5 && j+1 != results.get(i).size()) {
                     out.println();
                     continue;
                 }
