@@ -37,9 +37,9 @@ public class fact4 {
 
         br.close();
 
+        /* OLD CODE
         int digit = 1;
-
-        for (int i = 2; i <= N; i++) {
+        for (int i = 1; i <= N; i++) {
             int t = i % 10;
             if (t > 1) {
                 digit *= t;
@@ -49,11 +49,31 @@ public class fact4 {
                 digit %= 10;
             }
         }
-
+        */
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("fact4.out")));
-        out.println(digit);
+        //out.println(digit);
+        out.println(D(N));
         out.close();
         // print final time taken
         System.out.println(System.currentTimeMillis() - startTime);
+    }
+    public static int D (int N) {
+        int[] arr = new int[] {1, 1, 2, 6, 4, 2, 2, 4, 2, 8};
+        if (N < 10) {
+            return arr[N];
+        }
+        int div = N/10;
+        int rem = div%10;
+        int res = -1;
+        if (rem%2==0) {
+            res = 6 * D(Math.floorDiv(N,5)) * arr[N%10];
+        } else {
+            res = 4 * D(Math.floorDiv(N,5)) * arr[N%10];
+        }
+        while (res % 10 == 0) {
+            res /= 10;
+        }
+        res%=10;
+        return res;
     }
 }
