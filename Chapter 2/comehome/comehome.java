@@ -60,7 +60,9 @@ public class comehome {
             pastures[first].edges.add(new Edge(second, distance));
             pastures[second].edges.add(new Edge(first, distance));
         }
+        br.close();
 
+        
         pastures = dijkstra(pastures, pastures[25]);
         int min = Integer.MAX_VALUE;
         int minPasture = -1;
@@ -70,7 +72,6 @@ public class comehome {
                 min = pastures[i].distance;
                 minPasture = i;
             }
-
         }
 
         // create PrintWriter to output results
