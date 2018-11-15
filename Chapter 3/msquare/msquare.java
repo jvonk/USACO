@@ -26,6 +26,7 @@ import java.util.LinkedList;
  * msquare
  */
 public class msquare {
+    static int[] target;
     public static void main(String[] args) throws Exception {
         // set startTime to measure how long the program takes
         long startTime = System.currentTimeMillis();
@@ -35,11 +36,13 @@ public class msquare {
 
         StringTokenizer l = new StringTokenizer(br.readLine());
         
-        int[] target = new int [] {Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken())};
+        target = new int [] {Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken())};
 
         br.close();
 
 
+        
+        
 
         
 
@@ -48,5 +51,33 @@ public class msquare {
         out.close();
         // print final time taken
         System.out.println(System.currentTimeMillis() - startTime);
+    }
+    //0  1  2  3
+    //7  6  5  4
+    public static void a() {
+        for (int i = 0; i < 4; i++) {
+            int temp = target[i];
+            target[i]=target[7-i];
+            target[7-i]=temp;
+        }
+    }
+    public static void b() {
+        int temp = target[4];
+        target[4]=target[5];
+        target[5]=target[6];
+        target[6]=target[7];
+        target[7]=temp;
+        temp = target[3];
+        target[3]=target[2];
+        target[2]=target[1];
+        target[1]=target[0];
+        target[0]=temp;
+    }
+    public static void c() {
+        int temp = target[1];
+        target[1]=target[6];
+        target[6]=target[5];
+        target[5]=target[2];
+        target[2]=temp;
     }
 }
