@@ -47,20 +47,23 @@ public class spin {
 
         br.close();
 
-        
+
+
 
 
 
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("spin.out")));
-        out.println(digit);
+
         out.close();
         // print final time taken
         System.out.println(System.currentTimeMillis() - startTime);
     }
+
+
     static class Wedge {
         int angle;
         int extent;
-        public Wheel(int ang, int ext) {
+        public Wedge(int ang, int ext) {
             angle = ang;
             extent = ext;
         }
