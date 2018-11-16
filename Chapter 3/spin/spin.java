@@ -52,7 +52,7 @@ public class spin {
         for (int i = 0; i < 5; i++)
             for (int j = 0; j < wheels[i].cuts.length; j+=2)
                 for (int k = 0; k <= wheels[i].cuts[j+1]; k++)
-                    wheels[i].empty[(wheels[i].cuts[j])%360] = true;
+                    wheels[i].empty[(wheels[i].cuts[j]+k)%360] = true;
 
         int res = -1;
         loop: for (int t = 0; t < 360; t++) {
@@ -69,6 +69,7 @@ public class spin {
                 }
                 if (works) {
                     res = t;
+                    // DEBUG System.out.println("res: "+res);
                     break loop;
                 }
             }
@@ -76,11 +77,7 @@ public class spin {
 
 
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("spin.out")));
-        if (res==-1) {
-            out.println("NONE");
-        } else {
-            out.println(res);
-        }
+        out.println((res==-1)?"none":res);
         out.close();
         // print final time taken
         System.out.println(System.currentTimeMillis() - startTime);
