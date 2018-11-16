@@ -41,7 +41,7 @@ public class spin {
             int num = Integer.parseInt(l.nextToken());
             wheels[i] = new Wheel(speed, num);
             for (int j = 0; j < num*2; j++) {
-                wheels.cuts[i]=Integer.parseInt(l.nextToken());
+                wheels[i].cuts[j]=Integer.parseInt(l.nextToken());
             }
         }
 
@@ -50,21 +50,37 @@ public class spin {
 
 
         for (int i = 0; i < 5; i++)
-            for (int j = 0; j < wheels[i].cuts.size(); j+=2)
-                for (int k = 0; k <= wheels[i].cuts.get(j+1); k++)
-                    wheels[i].empty[(wheels[i].cuts.get(j))%360] = true;
+            for (int j = 0; j < wheels[i].cuts.length; j+=2)
+                for (int k = 0; k <= wheels[i].cuts[j+1]; k++)
+                    wheels[i].empty[(wheels[i].cuts[j])%360] = true;
 
         int res = -1;
         loop: for (int t = 0; t < 360; t++) {
             for (int i = 0; i < 5; i++){
                 int pos = (wheels[i].speed*t)%360;
-                
+                for (int j = 0; j < 360; j++) {
+                    wheels[i].e[(j+pos)%360]=wheels[i].empty[j];
+                }
+            }
+            for (int j = 0; j < 360; j++) {
+                boolean works = true;
+                for (int i = 0; i < 5; i++) {
+                    works&=wheels[i].e[j];
+                }
+                if (works) {
+                    res = t;
+                    break loop;
+                }
             }
         }
 
 
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("spin.out")));
-
+        if (res==-1) {
+            out.println("NONE");
+        } else {
+            out.println(res);
+        }
         out.close();
         // print final time taken
         System.out.println(System.currentTimeMillis() - startTime);
@@ -74,12 +90,12 @@ public class spin {
         int speed;
         int[] cuts;
         boolean[] empty;
-        int[] e;
+        boolean[] e;
         public Wheel(int spd, int num) {
             speed = spd;
             cuts = new int[num*2];
             empty = new boolean[360];
-            e = new int[360];
+            e = new boolean[360];
         }
     }
 }
