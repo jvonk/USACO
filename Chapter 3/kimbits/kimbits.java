@@ -9,55 +9,43 @@ import java.io.*;
 import java.util.*;
 
 public class kimbits {
+    private static int N, L, top;
+    private static long I;
+    private static String[] list;
+    private static PrintWriter out;
+    private static boolean flag=true;
+
     public static void main(String[] args) throws Exception {
         long startTime = System.currentTimeMillis();
         BufferedReader br = new BufferedReader(new FileReader("kimbits.in"));
-        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("kimbits.out")));
+        out = new PrintWriter(new BufferedWriter(new FileWriter("kimbits.out")));
+ 
+        //StringTokenizer l = new StringTokenizer(br.readLine());
+        String[] l = (br.readLine()).split(" ", 3);
+        N = Integer.parseInt(l[0]);
+        L = Integer.parseInt(l[1]);
+        I = Long.parseLong(l[2]);
 
-        StringTokenizer l = new StringTokenizer(br.readLine());
-
-        int N = Integer.parseInt(l.nextToken());
-        int L = Integer.parseInt(l.nextToken());
-        int I = Integer.parseInt(l.nextToken());
-        boolean[] res = solve(N, L, I, new boolean[N+1]);
-        String str = "";
-        for (int i = 0; i <= N; i++) {
-            str+=res[i]?"1":"0";
-        }
-        out.println(str);
+        top = 0;
+        flag=true;
+        recurse("", 0);
         br.close();
         out.close();
         System.out.println(System.currentTimeMillis() - startTime);
     }
-    public static boolean[] solve (int N, int L, int I, boolean[] arr) {
-        if (I==-1) {
-            return arr;
-        }
-        int k = -1;
-        int total = 0;
-        for (k = 1; k <= N; k++) {
-            total=0;
-            int[] sums = new int[N+1];
-            sums[0]=1;
-            sums[k]=1;
-            for (int i = 1; 2*i <= k; i++) {
-                sums[i]+=sums[i-1]*(k-i+1)/i;
-                sums[k-i]=sums[i];
+    private static void recurse (String str, int numOnes) {
+        if (!flag) return;
+        if (str.length()==N) {
+            top++;
+            if (top==I) {
+                out.println(str);
+                flag = false;
             }
-            for (int i = 0; i <= L; i++) {
-                //System.out.println(k + "\t" + i + "\t" + sums[i]);
-                total+=sums[i];
-            }
-            if (total>=I) {
-                break;
-            }
+            return;
         }
-        System.out.println(N+"\t"+L+"\t"+I);
-        if (k<=N || true) {
-            arr[k]=true;
-            return solve(k-1, L-1, I-total+1, arr);
-        } else {
-            return solve(N-1, L, I-total+1, arr);
-        }
+
+        recurse(str+"0", numOnes);
+        if (numOnes<L)
+            recurse(str+"1", numOnes+1);
     }
 }
