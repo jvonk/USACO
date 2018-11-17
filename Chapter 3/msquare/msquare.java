@@ -50,49 +50,33 @@ public class msquare {
                 res = item.str;
                 break;
             }
-            //if (item.str.length()==7)
-            //    System.out.println(item.str);
-            if (item.str.equals("BCABCCB")) {
-                for (int i = 0; i < 8; i++) {
-                    System.out.println(i+": "+item.target[i]);
-                }
-            }
-            if (item.str.length() == 0 || item.str.charAt(item.str.length()-1) != 'A') {
-                Node a = a(item);
-                if (!set.contains(a)) {
-                    set.add(a);
+            if (!check(item.str, 0)) {
+                Node a = new Node(new int[] {item.target[7], item.target[6], item.target[5], item.target[4], item.target[3], item.target[2], item.target[1], item.target[0]}, item.str+"A");
                     deque.addLast(a);
-                }
             }
-            Node b = b(item);
-            if (!set.contains(b)) {
-                set.add(b);
-                deque.addLast(b);
+            if (!check(item.str, 1)) {
+                Node b = new Node(new int[] {item.target[3], item.target[0], item.target[1], item.target[2], item.target[5], item.target[6], item.target[7], item.target[4]}, item.str+"B");
+                    deque.addLast(b);
             }
-            Node c = c(item);
-            if (!set.contains(c)) {
-                set.add(c);
-                deque.addLast(c);
+            if (!check(item.str, 2)) {
+                Node c = new Node(new int[] {item.target[0], item.target[6], item.target[1], item.target[3], item.target[4], item.target[2], item.target[5], item.target[7]}, item.str+"C");
+                    deque.addLast(c);
             }
         }
 
-
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("msquare.out")));
+        out.println(res.length());
         out.println(res);
         out.close();
         // print final time taken
         System.out.println(System.currentTimeMillis() - startTime);
     }
-    //0  1  2  3
-    //7  6  5  4
-    public static Node a(Node n) {
-        return new Node(new int[] {n.target[7], n.target[6], n.target[5], n.target[4], n.target[3], n.target[2], n.target[1], n.target[0]}, n.str+"A");
-    }
-    public static Node b(Node n) {
-        return new Node(new int[] {n.target[3], n.target[0], n.target[1], n.target[2], n.target[5], n.target[6], n.target[7], n.target[4]}, n.str+"B");
-    }
-    public static Node c(Node n) {
-        return new Node(new int[] {n.target[0], n.target[6], n.target[1], n.target[3], n.target[4], n.target[2], n.target[5], n.target[7]}, n.str+"C");
+    public static boolean check (String s, int which) {
+        if (which==0) 
+            return (s.length()!=0 && ((s.charAt(s.length()-1)=='A')||s.endsWith("CAC")||s.endsWith("BABBB")||s.endsWith("BBBAB")||s.endsWith("BBABB")||s.endsWith("CCACC")||s.endsWith("ACACCAC")||s.endsWith("CCCACCC")||s.endsWith("CBBBABC")||s.endsWith("CBBABBC")||s.endsWith("CACACAC")||s.endsWith("CBABBBC")||s.endsWith("BBCACBB")||s.endsWith("ABABBAB")||s.endsWith("ABBABAB")||s.endsWith("ABABABB")||s.endsWith("BCACBBB")||s.endsWith("BABABAB")||s.endsWith("BBBCACB")));
+        if (which == 1)
+            return (s.endsWith("BBB")||s.endsWith("ABABB")||s.endsWith("BABAB")||s.endsWith("ABBAB")||s.endsWith("ABBBA")||s.endsWith("BABBA")||s.endsWith("BBABA")||s.endsWith("ABCACBB")||s.endsWith("BABCACB")||s.endsWith("BBACACB")||s.endsWith("BBBACAC")||s.endsWith("ABBBCAC")||s.endsWith("BABBCAC")||s.endsWith("BBABCAC")||s.endsWith("BACACBB")||s.endsWith("ABBCACB")||s.endsWith("BCACBAB")||s.endsWith("BCACBBA")||s.endsWith("CACBBBA")||s.endsWith("ABABABA")||s.endsWith("BBCACBA")||s.endsWith("BBBCACA")||s.endsWith("CACBABB")||s.endsWith("BBCACAB")||s.endsWith("CACBBAB")||s.endsWith("BCACABB"));
+        return (s.endsWith("ACA")||s.endsWith("CCC")||s.endsWith("ACCAC")||s.endsWith("CACCA")||s.endsWith("CCCACAC")||s.endsWith("CACCCAC")||s.endsWith("ACCCACC")||s.endsWith("CCACACC")||s.endsWith("ACBABBB")||s.endsWith("ACBBBAB")||s.endsWith("BBABBCA")||s.endsWith("BBBABCA")||s.endsWith("BABBBCA")||s.endsWith("CCACCCA")||s.endsWith("ACACACA")||s.endsWith("ACBBABB"));
     }
     public static class Node implements Comparable<Node> {
         int[] target;
