@@ -40,9 +40,10 @@ public class butter {
         int C = Integer.parseInt(l.nextToken());
 
         boolean[] hasCow = new boolean[P];
+        int[] numCow = new int[P];
 
         for (int i = 0; i < N; i++) {
-            hasCow[Integer.parseInt(br.readLine())-1]=true;
+            numCow[Integer.parseInt(br.readLine())-1]++;
         }
 
         Node[] pastures = new Node[P];
@@ -62,15 +63,14 @@ public class butter {
 
         br.close();
 
+        System.out.println(System.currentTimeMillis() - startTime);
 
         int min = Integer.MAX_VALUE;
         for (int i = 0; i < P; i++) {
             Node[] calculated = dijkstra(pastures, pastures[i]);
             int total = 0;
             for (int j = 0; j < P; j++) {
-                if(hasCow[j]) {
-                    total+=calculated[j].distance;
-                }
+                total+=calculated[j].distance*numCow[j];
             }
             if (total<min) {
                 min = total;

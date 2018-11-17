@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.TreeMap;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -26,7 +27,6 @@ import java.util.LinkedList;
  * msquare
  */
 public class msquare {
-    static int[] target;
     public static void main(String[] args) throws Exception {
         // set startTime to measure how long the program takes
         long startTime = System.currentTimeMillis();
@@ -36,48 +36,72 @@ public class msquare {
 
         StringTokenizer l = new StringTokenizer(br.readLine());
         
-        target = new int [] {Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken())};
+        Node target = new Node (new int [] {Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken()), Integer.parseInt(l.nextToken())});
 
         br.close();
 
+        HashSet<Node> set = new HashSet<>();
+        Deque<Node> deque = new LinkedList<Node>();
+        deque.add(new Node (new int[] {1, 2, 3, 4, 5, 6, 7, 8}));
+        String res = "NONE";
+        while (!deque.isEmpty()) {
+            Node item = deque.remove();
+            if (item.equals(target)) {
+                res = item.str;
+                break;
+            }
+            if (item.str.length() > 0 || item.str.charAt(item.str.length()-1) != 'A') {
+                Node a = a(item);
+                if (!set.contains(a)) {
+                    set.add(a);
+                    deque.add(a);
+                }
+            }
+            Node b = b(item);
+            if (!set.contains(b)) {
+                set.add(b);
+                deque.add(b);
+            }
+            Node c = c(item);
+            if (!set.contains(c)) {
+                set.add(c);
+                deque.add(c);
+            }
+        }
 
-        
-        
-
-        
 
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("msquare.out")));
-        out.println(digit);
+        out.println(res);
         out.close();
         // print final time taken
         System.out.println(System.currentTimeMillis() - startTime);
     }
     //0  1  2  3
     //7  6  5  4
-    public static void a() {
-        for (int i = 0; i < 4; i++) {
-            int temp = target[i];
-            target[i]=target[7-i];
-            target[7-i]=temp;
+    public static Node a(Node n) {
+        return new Node(new int[] {n.target[7], n.target[6], n.target[5], n.target[4], n.target[3], n.target[2], n.target[1], n.target[0]}, n.str+"A");
+    }
+    public static Node b(Node n) {
+        return new Node(new int[] {n.target[3], n.target[0], n.target[1], n.target[2], n.target[5], n.target[6], n.target[7], n.target[4]}, n.str+"B");
+    }
+    public static Node c(Node n) {
+        return new Node(new int[] {n.target[0], n.target[6], n.target[1], n.target[3], n.target[4], n.target[2], n.target[5], n.target[7]}, n.str+"C");
+    }
+    public static class Node implements Comparable<Node> {
+        int[] target;
+        String str;
+        public Node (int[] t) {
+            target = t;
+            str="";
         }
-    }
-    public static void b() {
-        int temp = target[4];
-        target[4]=target[5];
-        target[5]=target[6];
-        target[6]=target[7];
-        target[7]=temp;
-        temp = target[3];
-        target[3]=target[2];
-        target[2]=target[1];
-        target[1]=target[0];
-        target[0]=temp;
-    }
-    public static void c() {
-        int temp = target[1];
-        target[1]=target[6];
-        target[6]=target[5];
-        target[5]=target[2];
-        target[2]=temp;
+        public Node (int[] t, String init) {
+            target = t;
+            str=init;
+        }
+        @Override
+        public int compareTo(Node other) {
+            if(this.target.equals(other.target)) return 0;
+            else return -1;
+        }
     }
 }
