@@ -46,26 +46,33 @@ public class msquare {
         String res = "NONE";
         while (!deque.isEmpty()) {
             Node item = deque.remove();
-            if (item.equals(target)) {
+            if (item.compareTo(target)==0) {
                 res = item.str;
                 break;
             }
-            if (item.str.length() > 0 || item.str.charAt(item.str.length()-1) != 'A') {
+            //if (item.str.length()==7)
+            //    System.out.println(item.str);
+            if (item.str.equals("BCABCCB")) {
+                for (int i = 0; i < 8; i++) {
+                    System.out.println(i+": "+item.target[i]);
+                }
+            }
+            if (item.str.length() == 0 || item.str.charAt(item.str.length()-1) != 'A') {
                 Node a = a(item);
                 if (!set.contains(a)) {
                     set.add(a);
-                    deque.add(a);
+                    deque.addLast(a);
                 }
             }
             Node b = b(item);
             if (!set.contains(b)) {
                 set.add(b);
-                deque.add(b);
+                deque.addLast(b);
             }
             Node c = c(item);
             if (!set.contains(c)) {
                 set.add(c);
-                deque.add(c);
+                deque.addLast(c);
             }
         }
 
@@ -100,7 +107,7 @@ public class msquare {
         }
         @Override
         public int compareTo(Node other) {
-            if(this.target.equals(other.target)) return 0;
+            if(Arrays.equals(this.target, other.target)) return 0;
             else return -1;
         }
     }
