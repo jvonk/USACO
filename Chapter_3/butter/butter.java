@@ -89,7 +89,7 @@ public class butter {
         }
     }
     public static int solve() {
-        int min = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
         for (int cow : cows) {
             dijkstra(cow);
         }
