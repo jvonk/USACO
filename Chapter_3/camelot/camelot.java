@@ -23,8 +23,8 @@ public class camelot {
         // create input BufferedReader from file
         BufferedReader br = new BufferedReader(new FileReader("camelot.in"));
         int[] firstLine = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-        int R = firstLine[0];
-        int C = firstLine[1];
+        int C = firstLine[0];
+        int R = firstLine[1];
         int numKnights = 0;
         int[] changeRow = new int[] { -2, -2, -1, 1, 2, 2, 1, -1};
         int[] changeCol = new int[] { -1, 1, 2, 2, 1, -1, -2, -2};
@@ -37,7 +37,7 @@ public class camelot {
             }
         }
         String[] str = br.readLine().split(" ");
-        Piece king = new Piece(str[0].charAt(0) - 'A' + 1, str[1].charAt(0) - '1' + 1);
+        Piece king = new Piece(str[0].charAt(0) - 'A' + 1, Integer.parseInt(str[1]));
         Piece[] knights = new Piece[1001];
         for (int i = 0; i < knights.length; i++) {
             knights[i] = new Piece();
@@ -46,7 +46,7 @@ public class camelot {
         while ((line = br.readLine()) != null) {
             str = line.split(" ");
             for (int i = 0; i < str.length; i += 2) {
-                knights[++numKnights] = new Piece(str[i].charAt(0) - 'A' + 1, str[i+1].charAt(0) - '1' + 1);
+                knights[++numKnights] = new Piece(str[i].charAt(0) - 'A' + 1, Integer.parseInt(str[i+1]));
             }
         }
         br.close();
@@ -68,13 +68,13 @@ public class camelot {
                 }
             }
         }
-        int l = 0;
+        int l = 2;
         int kingStartRow = Math.max(1, king.row - l);
         int kingStartCol = Math.max(1, king.col - l);
         int kingEndRow = Math.min(R, king.row + l);
         int kingEndCol = Math.min(C, king.col + l);
         int minstep = 1 << 25;
-        for (int row = 1; row <= R; row++) {
+        loop: for (int row = 1; row <= R; row++) {
             for (int col = 1; col <= C; col++) {
                 int step = 0;
                 for (int i = 1; i <= numKnights; i++) {
@@ -91,8 +91,9 @@ public class camelot {
                         }
                     }
                 }
-                if (min+step<=minstep)System.out.println(row+","+col+"\t"+min+"+"+step+" "+minstep);
+                //if (min+step<minstep)System.out.println(row+","+col+"\t"+min+"+"+step+" "+minstep);
                 minstep = Math.min(min + step, minstep);
+                if (minstep==0) break loop;
             }
         }
 
