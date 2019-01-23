@@ -74,7 +74,7 @@ public class camelot {
         int kingEndRow = Math.min(R, king.row + l);
         int kingEndCol = Math.min(C, king.col + l);
         int minstep = 1 << 25;
-    loop:
+        loop:
         for(int row = 1; row <= R; row++) {
             for(int col = 1; col <= C; col++) {
                 int step = 0;
@@ -83,7 +83,7 @@ public class camelot {
                 }
                 int min = Math.max(Math.abs(king.row - row), Math.abs(king.col - col));
                 for(int kingRow = kingStartRow; kingRow <= kingEndRow; kingRow++) {
-                    for(int kingCol = kingStartCol; kingCol <= kingEndCol; kingCol++) {
+                    for(    int kingCol = kingStartCol; kingCol <= kingEndCol; kingCol++) {
                         for(int i = 1; i <= numKnights; i++) {
                             int temp = Math.max(Math.abs(king.row - kingRow), Math.abs(king.col - kingCol))
                                        - mem[knights[i].row][knights[i].col][row][col] + mem[kingRow][kingCol][row][col]
