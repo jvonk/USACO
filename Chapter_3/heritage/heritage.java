@@ -25,18 +25,23 @@ public class heritage {
         System.exit(0);
     }
     public static Node tree(int start, int end) {
-        if (start > end) return null;
+        if(start > end) {
+            return null;
+        }
         Node node = new Node(preorder[preindex++]);
-        if (start == end) return node;
+        if(start == end) {
+            return node;
+        }
         int inindex = find(inorder, node.data, start, end);
         node.left = tree(start, inindex-1);
         node.right = tree(inindex+1, end);
         return node;
     }
     public static int find(char[] arr, char f, int start, int end) {
-        for (int i = 0; i < arr.length; i++)
-            if (arr[i] == f)
+        for(int i = 0; i < arr.length; i++)
+            if(arr[i] == f) {
                 return i;
+            }
         return -1;
     }
 
