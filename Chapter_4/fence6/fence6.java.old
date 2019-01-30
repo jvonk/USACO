@@ -1,0 +1,76 @@
+/*
+ID: 100021881
+LANG: JAVA
+PROG: fence6
+*/
+
+import java.io.*;
+import java.util.*;
+import java.util.stream.*;
+
+/**
+ * find minimum number that cannot be made by adding any subset of an array of components
+ * @author  Johan Vonk <johan.d.s.vonk@gmail.com>
+ */
+public class fence6 {
+    public static Node[] values;
+    public static int res = Integer.MAX_VALUE;
+    public static void main(String[] args) throws Exception {
+        long startTime = System.currentTimeMillis();
+        BufferedReader br = new BufferedReader(new FileReader("fence6.in"));
+        int N = Integer.parseInt(br.readLine());
+        System.out.println(N);
+        int[][] input = br.lines().map(a -> Arrays.stream(a.split(" "))).map(a -> a.mapToInt(Integer::parseInt).toArray()).toArray(int[][]::new);
+        br.close();
+        values = new Node[N + 1];
+        for(int i = 0; i < N; i++) {
+            values[input[i * 3][0]] = new Node(input[i * 3][1], input[i * 3 + 1], input[i * 3 + 2]);
+            System.out.println(input[i * 3][0] + "\t" + values[input[i * 3][0]]);
+        }
+        System.out.println(System.currentTimeMillis() - startTime);
+        for(int i = 1; i <= N; i++) {
+            findCycle(i, false, false, 0, new boolean[N + 1], "");
+        }
+        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("fence6.out")));
+        out.println(res);
+        out.close();
+        System.out.println(System.currentTimeMillis() - startTime);
+        System.exit(0);
+    }
+    public static void findCycle(int i, boolean init, boolean left, int distance, boolean[] visited, String temp) {
+        if(temp.length()>2 && temp.indexOf((char)(i + '1' - 1)) != -1) {
+            if(init!=left && temp.indexOf((char)(i + '1' - 1)) == 0) {
+                if (distance<=12)System.out.println(temp.indexOf((char)(i + '1' - 1)) + "\t" + distance + "\t" + i + "\t" + temp);
+                res = Math.min(res, distance);
+            }
+            return;
+        }
+        temp += i;
+        distance += values[i].length;
+        visited[i] = true;
+        if(left) {
+            for(int j : values[i].left) {
+                findCycle(j, !init, left, distance, visited, temp);
+                findCycle(j, init, !left, distance, visited, temp);
+            }
+        } else {
+            for(int j : values[i].right) {
+                findCycle(j, init, left, distance, visited, temp);
+                findCycle(j, !init, !left, distance, visited, temp);
+            }
+        }
+    }
+    public static class Node {
+        int[] left;
+        int[] right;
+        int length;
+        public Node(int length, int[] left, int[] right) {
+            this.length = length;
+            this.left = left;
+            this.right = right;
+        }
+        public String toString() {
+            return String.valueOf(length) + "\t" + Arrays.toString(left) + "\t" + Arrays.toString(right);
+        }
+    }
+}

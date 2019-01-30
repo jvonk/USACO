@@ -1,0 +1,96 @@
+/*
+ID: 100021881
+LANG: JAVA
+PROG: fence6
+*/
+
+import java.io.*;
+import java.util.*;
+
+/**
+ * find the minimum perimeter given a set of edges
+ * @author  Johan Vonk <johan.d.s.vonk@gmail.com>
+ */
+public class fence6 {
+    public static Edge[] values;
+    public static int res = Integer.MAX_VALUE;
+    public static void main(String[] args) throws Exception {
+        long startTime = System.currentTimeMillis();
+        BufferedReader br = new BufferedReader(new FileReader("fence6.in"));
+        int N = Integer.parseInt(br.readLine());
+        int[][] input = br.lines().map(a -> Arrays.stream(a.split(" "))).map(a -> a.mapToInt(Integer::parseInt).toArray()).toArray(int[][]::new);
+        br.close();
+        values = new Edge[N];
+        for(int i = 0; i < N; i++) {
+            values[input[i * 3][0] - 1] = new Edge(input[i * 3][1], input[i * 3 + 1], input[i * 3 + 2]);
+            System.out.println(i + "\t" + values[input[i * 3][0] - 1].length + "\t" + values[input[i * 3][0] - 1].left + "\t" + values[input[i * 3][0] - 1].right);
+        }
+        for(int i = 0; i < N; i++) {
+            findCycle(i, true, 0, new ArrayList<Integer>());
+            findCycle(i, false, 0, new ArrayList<Integer>());
+        }
+        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("fence6.out")));
+        out.println(res);
+        out.close();
+        System.out.println(System.currentTimeMillis() - startTime);
+        System.exit(0);
+    }
+    /**
+     * go through all Edges until a repitition is found
+     * @param i current Edge
+     * @param which use left if true and right otherwise
+     * @param distance  total perimeter distance travelled
+     * @param visited   Edges that have been visited
+     */
+    public static void findCycle(int i, boolean which, int distance, List<Integer> visited) {
+        if(visited.contains(i)) {
+            if(visited.size() > 2) {
+                if(visited.indexOf(i) != 0) {
+                    //if (visited.size()-visited.lastIndexOf(i)<5)System.out.println(visited);
+                    visited = visited.subList(visited.lastIndexOf(i), visited.size());
+                    if(visited.size() <= 2) {
+                        return;
+                    }
+                    distance = 0;
+                    for(int j : visited) {
+                        distance += values[j].length;
+                    }
+                    findCycle(i, which, distance, visited);
+                } else if(distance < res) {
+                    //System.out.println(i + "\t" + distance + "\t" + visited);
+                    res = distance;
+                }
+            }
+            return;
+        }
+        visited.add(i);
+        distance += values[i].length;
+        for(int j : which ? values[i].left : values[i].right) {
+            if(values[j].left.contains(i)) {
+                findCycle(j, false, distance, visited);
+            } else if(values[j].right.contains(i)){
+                findCycle(j, true, distance, visited);
+            }
+        }
+    }
+    public static class Edge {
+        int length;
+        List<Integer> left = new ArrayList<Integer>();
+        List<Integer> right = new ArrayList<Integer>();
+        /**
+         * initialize Edge in tree
+         * @param length    length of Edge
+         * @param left  Edges in one direction
+         * @param right Edges in the other direction
+         */
+        public Edge(int length, int[] left, int[] right) {
+            this.length = length;
+            for(int l : left) {
+                this.left.add(l - 1);
+            }
+            for(int r : right) {
+                this.right.add(r - 1);
+            }
+        }
+    }
+}
