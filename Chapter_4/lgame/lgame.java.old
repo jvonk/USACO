@@ -1,0 +1,57 @@
+/*
+ID: 100021881
+LANG: JAVA
+PROG: lgame
+*/
+
+// if you want to turn all the debug on, just find and replace "// DEBUG " with nothing
+
+import java.io.*;
+import java.util.*;
+
+/**
+ * lgame
+ */
+public class lgame {
+    public static void main(String[] args) throws Exception {
+        long startTime = System.currentTimeMillis();
+        BufferedReader in = new BufferedReader(new FileReader("lgame.in"));
+        List<Integer> letters = new ArrayList<Integer>(Collections.nCopies(26, 0));
+        for(char letter : in.readLine().toCharArray()) {
+            int loc = (int)(letter - 'a');
+            letters.set(loc, letters.get(loc)+1);
+        }
+        in.close();
+        BufferedReader br = new BufferedReader(new FileReader("lgame.dict"));
+        Map<List<Integer>, List<String>> map = new HashMap<List<Integer>, List<String>>();
+        map.put(new ArrayList<Integer>(Collections.nCopies(26, 0)), "");
+        String line = "";
+        while(!(line = br.readLine()).equals(".")) {
+            List<Integer> list = new ArrayList<Integer>(Collections.nCopies(26, 0));
+            for(char c : line.toCharArray()) {
+                list.set(c - 'a', list.get(c - 'a'));
+            }
+            map.putIfAbsent(list, new ArrayList<String>());
+            map.get(list).add(line);
+        }
+        br.close();
+        List<String> first = new ArrayList<String>();
+        List<String> second = new ArrayList<String>();
+        int[] values = new int[] {2, 5, 4, 4, 1, 6, 5, 5, 1, 7, 6, 3, 5, 2, 3, 5, 7, 2, 1, 2, 4, 6, 6, 7, 5, 7};
+        int max = 0;
+        for(List<Integer> list : map.entrySet()) {
+            List<Integer> opposite = new ArrayList<Integer>();
+            for(int i = 0; i < 26; i++) {
+                opposite.add(letters.get(i) - list.get(i));
+            }
+            if (map.contains(opposite)) {
+
+            }
+        }
+        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("lgame.out")));
+
+        out.close();
+        System.out.println(System.currentTimeMillis() - startTime);
+        System.exit(0);
+    }
+}
