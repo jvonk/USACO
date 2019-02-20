@@ -1,0 +1,160 @@
+/*
+ID: 100021881
+LANG: JAVA
+PROG: frameup
+*/
+
+// if you want to turn all the debug on, just find and replace "// DEBUG " with nothing
+
+import java.io.*;
+import java.util.*;
+
+/**
+ * frameup
+ */
+public class frameup {
+    public static void main(String[] args) throws Exception {
+        long startTime = System.currentTimeMillis();
+        BufferedReader br = new BufferedReader(new FileReader("frameup.in"));
+        String[] first = br.readLine().split(" ");
+        int H = Integer.parseInt(first[0]);
+        int W = Integer.parseInt(first[1]);
+        char[][] oldFrame = new char[H][W];
+
+        int[][] frame = new int[H][W];
+        Set<Character> oldOrder = new LinkedHashSet<Character>();
+        for(int i = 0; i < H; i++) {
+            char[] arr = br.readLine().toCharArray();
+            oldFrame[i] = arr;
+            for(char c : arr) {
+                if(c != '.') {
+                    oldOrder.add(c);
+                }
+            }
+        }
+        List<Character> order = new ArrayList<Character>(oldOrder);
+        Collections.sort(order);
+        System.out.println(order);
+        for(int i = 0; i < H; i++) {
+            for(int j = 0; j < W; j++) {
+                frame[i][j] = oldFrame[i][j] == '.' ? -1 : order.indexOf(oldFrame[i][j]);
+            }
+        }
+        int[][] values = new int[order.size() + 1][4];
+        for(int x = 0; x < values.length; x++) {
+            values[x][0] = H - 1;
+            values[x][1] = W - 1;
+        }
+        br.close();
+        List<Set<Integer>> relative = new ArrayList<Set<Integer>>();
+        for(int i = 0; i < H; i++) {
+            for(int j = 0; j < W; j++) {
+                int c = frame[i][j];
+                if(c == -1) {
+                    continue;
+                }
+                values[c][0] = Math.min(values[c][0], i);
+                values[c][1] = Math.min(values[c][1], j);
+                values[c][2] = Math.max(values[c][2], i);
+                values[c][3] = Math.max(values[c][3], j);
+            }
+        }
+        System.out.println();
+        for (int c = 0; c < values.length; c++) {
+            System.out.println(Arrays.toString(values[c]));
+        }
+        System.out.println();
+        for(char x = 0; x < values.length; x++) {
+            // DEBUG System.out.println(Arrays.toString(values[x]));
+            relative.add(new HashSet<Integer>());
+            relative.get(x).addAll(check(frame[values[x][0]], x, values[x][1], values[x][3]));
+            relative.get(x).addAll(check(frame[values[x][2]], x, values[x][1], values[x][3]));
+            int[] fr = new int[H];
+            int[] fr2 = new int[H];
+            for(int i = 0; i < H; i++) {
+                fr[i] = frame[i][values[x][1]];
+                fr2[i] = frame[i][values[x][3]];
+            }
+            relative.get(x).addAll(check(fr, x, values[x][0], values[x][2]));
+            relative.get(x).addAll(check(fr2, x, values[x][0], values[x][2]));
+        }
+        for(int n = 0; n < 10; n++) {
+            for(int i = 0; i < relative.size(); i++) {
+                Set<Integer> add = new HashSet<Integer>();
+                for(int j : relative.get(i)) {
+                    add.addAll(relative.get(j));
+                }
+                relative.get(i).addAll(add);
+            }
+        }
+        System.out.println(relative);
+        List<List<Integer>> results = new ArrayList<List<Integer>>();
+        results.add(new ArrayList<Integer>());
+        boolean done = false;
+        for(int n = 0; n < order.size(); n++) {
+            done = true;
+            List<List<Integer>> current = new ArrayList<List<Integer>>();
+            while(!results.isEmpty()) {
+                List<Integer> res = results.remove(0);
+                int max = 0;
+                List<Integer> maxs = new ArrayList<Integer>();
+                for(int i = 0; i < relative.size(); i++) {
+                    if(res.contains(i)) {
+                        continue;
+                    }
+                    int count = 0;
+                    for(int a : relative.get(i)) {
+                        if(res.contains(a)) {
+                            continue;
+                        }
+                        count++;
+                    }
+                    if(count > max) {
+                        done = false;
+                        maxs.clear();
+                        max = count;
+                    }
+                    if(count >= max) {
+                        maxs.add(i);
+                    }
+                }
+                // DEBUG System.out.println(maxs);
+                for(int a : maxs) {
+                    List<Integer> temp = new ArrayList<Integer>();
+                    temp.addAll(res);
+                    temp.add(a);
+                    current.add(temp);
+                }
+            }
+            results.clear();
+            results.addAll(current);
+            // DEBUG System.out.println(current);
+        }
+        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("frameup.out")));
+        // DEBUG System.out.println(results.size());
+    loop:
+        for(List<Integer> res : results) {
+            String str = "";
+            System.out.println(res);
+            for(int a : res) {
+                if(a >= order.size()) {
+                    continue loop;
+                }
+                str += order.get(a);
+            }
+            out.println(str);
+        }
+        out.close();
+        System.out.println(System.currentTimeMillis() - startTime);
+        System.exit(0);
+    }
+    public static Set<Integer> check(int[] frame, int x, int min, int max) {
+        Set<Integer> add = new HashSet<Integer>();
+        for(int j = min; j <= max; j++) {
+            if(frame[j] != x) {
+                add.add(frame[j]);
+            }
+        }
+        return add;
+    }
+}

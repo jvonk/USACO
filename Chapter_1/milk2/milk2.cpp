@@ -38,7 +38,7 @@ int main(void) {
     tnomilk = 0;
     int cur = 0;
     for(int i = 1; i < nmilking; i++) {
-        if(milking[i].begin > milking[cur].end) {    /* a down time */
+        if(milking[i].begin > milking[cur].end) {
             tnomilk = max(tnomilk,milking[i].begin - milking[cur].end);
             tmilk = max(tmilk,milking[cur].end - milking[cur].begin);
             cur = i;

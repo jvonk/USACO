@@ -1,0 +1,112 @@
+/*
+ID: 100021881
+LANG: JAVA
+PROG: frameup
+*/
+
+// if you want to turn all the debug on, just find and replace "// DEBUG " with nothing
+
+import java.io.*;
+import java.util.*;
+
+/**
+ * frameup
+ */
+public class frameup {
+    public static void main(String[] args) throws Exception {
+        long startTime = System.currentTimeMillis();
+        BufferedReader br = new BufferedReader(new FileReader("frameup.in"));
+        String[] first = br.readLine().split(" ");
+        int H = Integer.parseInt(first[0]);
+        int W = Integer.parseInt(first[1]);
+        int[][] frame = new int[H][W];
+        int[][] squares = new int[5][3];
+        for(int i = 0; i < H; i++) {
+            frame[i] = br.readLine().chars().map(x -> x - 'A').toArray();
+        }
+        br.close();
+        List<Set<Integer>> relative = new ArrayList<Set<Integer>>();
+        for(char x = 0; x < 5; x++) {
+            relative.add(new HashSet<Integer>());
+            for(int i = 0; i < H; i++) {
+                int state = 0;
+                int start = -1;
+                int end = -1;
+                for(int j = 0; j < W; j++) {
+                    if(frame[i][j] == x) {
+                        if(state == 0) {
+                            state = 1;
+                            start = j;
+                            end = j;
+                        } else {
+                            end = j;
+                        }
+                    }
+                }
+                if(end - start > 2 && start > 0) {
+                    boolean good = true;
+                    Set<Integer> add = new HashSet<Integer>();
+                    for(int j = start + 1; j < end; j++) {
+                        if(frame[i][j] == -19) {
+                            good  = false;
+                            break;
+                        }
+                        if(frame[i][j] != x && frame[i][j] >= 0) {
+                            add.add(frame[i][j]);
+                        }
+                    }
+                    if(good) {
+                        relative.get(x).addAll(add);
+                    }
+                }
+            }
+            for(int i = 0; i < W; i++) {
+                int state = 0;
+                int start = -1;
+                int end = -1;
+                for(int j = 0; j < H; j++) {
+                    if(frame[j][i] == x) {
+                        if(state == 0) {
+                            state = 1;
+                            start = j;
+                            end = j;
+                        } else {
+                            end = j;
+                        }
+                    }
+                }
+                if(end - start > 2 && start > 0) {
+                    boolean good = true;
+                    Set<Integer> add = new HashSet<Integer>();
+                    for(int j = start + 1; j < end; j++) {
+                        if(frame[j][i] == -19) {
+                            good  = false;
+                            break;
+                        }
+                        if(frame[j][i] != x && frame[j][i] >= 0) {
+                            add.add(frame[j][i]);
+                        }
+                    }
+                    if(good) {
+                        relative.get(x).addAll(add);
+                    }
+                }
+            }
+        }
+        for(int i = 0; i < relative.size(); i++) {
+            System.out.println(relative.get(i));
+        }
+        for(int i = 0; i < relative.size(); i++) {
+            Set<Integer> add = new HashSet<Integer>();
+            for(int j : relative.get(i)) {
+                add.addAll(relative.get(j));
+            }
+            relative.get(i).addAll(add);
+        }
+        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("frameup.out")));
+
+        out.close();
+        System.out.println(System.currentTimeMillis() - startTime);
+        System.exit(0);
+    }
+}
