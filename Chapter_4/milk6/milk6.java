@@ -4,9 +4,6 @@ LANG: JAVA
 PROG: milk6
 */
 
-import java.io.*;
-import java.util.*;
-
 /**
  * milk6
  * Use dinic algorithm to find the maximum flow.
@@ -14,85 +11,97 @@ import java.util.*;
  * Then use depth first to find the minimum nodes that are needed for that sum.
  */
 
+import java.util.*;
+import java.io.*;
+
 public class milk6 {
-    public static long N = 100005, inf = 233333333, mod=1001;
-    public static long ans;
-    public static int n, m, t, cnt=1, s;
-    public static int[] h = new int[100];
-    public static long[] dis = new long[2005];
-    public static class edge {
-        int to, net;
-        long v;
-    }
-    public static edge[] e = new edge[(int)N];
-    public static void add(int u, int v, long w) {
-        e[++cnt]=new edge();
-        e[cnt].to=v;
-        e[cnt].net=h[u];
-        e[cnt].v=w;
-        h[u]=cnt;
-        e[++cnt]=new edge();
-        e[cnt].to=u;
-        e[cnt].net=h[v];
-        e[cnt].v=w;
-        h[v]=cnt;
-    }
-    public static Queue<Integer> q = new LinkedList<Integer>();
+    public static int N, M;
+    public static long[][] costs = new long[33][33], oldCosts = new long[33][33];
+    public static Edge[] edges = new Edge[1001];
+    public static int[] depths = new int[33];
+    public static Queue<Integer> queue = new LinkedList<Integer>();
+
     public static boolean bfs() {
-        Arrays.fill(dis, -1);
-        q.add(s);
-        dis[s]=0;
-        while(!q.isEmpty()) {
-            int u = q.remove();
-            for (int i = h[u]; i != 0; i=e[i].net) {
-                if (dis[e[i].to]==-1&&e[i].v>0) {
-                    dis[e[i].to]=dis[u]+1;
-                    q.add(e[i].to);
+        Arrays.fill(depths, 0);
+        depths[1] = 1;
+        queue.add(1);
+        while (!queue.isEmpty()) {
+            int i = queue.remove();
+            for (int j = 1; j <= N; j++) {
+                if (costs[i][j] > 0 && depths[j] == 0) {
+                    depths[j] = depths[i] + 1;
+                    queue.add(j);
                 }
             }
         }
-        return dis[t]!=-1;
+        return depths[N] != 0;
     }
-    public static long dfs(int u, long op) {
-        if (u==t) {
-            return op;
+
+    public static long dfs(int i, long max) {
+        if (i == N) {
+            return max;
         }
-        long flow = 0, used = 0;
-        for (int i = h[u]; i!=0; i=e[i].net) {
-            int v = e[i].to;
-            if (dis[v]==dis[u]+1&&e[i].v>0) {
-                used = dfs(v, Math.min(op, e[i].v));
-                if (used==0) continue;
-                flow+=used;
-                op-=used;
-                e[i].v-=used;
-                e[i^1].v+=used;
-                if (op==0) break;
+        long flow = 0;
+        for (int j = 1; j <= N; j++) {
+            if (depths[j] - depths[i] == 1 && costs[i][j] != 0) {
+                long d = dfs(j, Math.min(max - flow, costs[i][j]));
+                flow += d;
+                costs[i][j] -= d;
+                costs[j][i] += d;
             }
         }
-        if(flow==0)dis[u]=-1;
+        if (flow == 0) depths[i] = 0;
         return flow;
     }
+
     public static void main(String[] args) throws Exception {
         long startTime = System.currentTimeMillis();
         BufferedReader br = new BufferedReader(new FileReader("milk6.in"));
         String[] line = br.readLine().split(" ");
-        n = Integer.parseInt(line[0]);
-        m = Integer.parseInt(line[1]);
-        s=1;
-        t=n;
-        for(int i = 1; i <= m; i++) {
-            line = br.readLine().split(" ");
-            add(Integer.parseInt(line[0]), Integer.parseInt(line[1]), Integer.parseInt(line[2])*mod+1);
+        N = Integer.parseInt(line[0]);
+        M = Integer.parseInt(line[1]);
+        for (int i = 0; i < M; i++) {
+            edges[i] = new Edge(br.readLine().split(" "));
+        }
+        for (int i = 0; i < oldCosts.length; i++) {
+            System.arraycopy(oldCosts[i], 0, costs[i], 0, oldCosts[i].length);
         }
         br.close();
-        while(bfs()) {
-            ans+=dfs(s, Long.MAX_VALUE);
+        long flow = 0;
+        while (bfs()) {
+            flow += dfs(1, Long.MAX_VALUE);
         }
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("milk6.out")));
-        out.println((long)(ans/mod)+" "+(long)(ans%mod));
+        out.println((long) (flow / 1001) + " " + (long) (flow % 1001));
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < oldCosts.length; j++) {
+                System.arraycopy(oldCosts[j], 0, costs[j], 0, oldCosts[j].length);
+            }
+            costs[edges[i].u][edges[i].v] -= edges[i].w;
+            long newFlow = 0;
+            while (bfs()) {
+                newFlow += dfs(1, Long.MAX_VALUE);
+            }
+            if (newFlow + edges[i].w == flow) {
+                out.println(i + 1);
+                oldCosts[edges[i].u][edges[i].v] -= edges[i].w;
+                flow -= edges[i].w;
+            }
+        }
         out.close();
         System.out.println(System.currentTimeMillis() - startTime);
         System.exit(0);
+    }
+
+    public static class Edge {
+        int u, v;
+        long w;
+
+        public Edge(String[] line) {
+            this.u = Integer.parseInt(line[0]);
+            this.v = Integer.parseInt(line[1]);
+            this.w = Long.parseLong(line[2]);
+            oldCosts[u][v] += w * 1001 + 1;
+        }
     }
 }
