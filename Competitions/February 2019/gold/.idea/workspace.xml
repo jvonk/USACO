@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f9ec13b6-c07a-4d6b-8019-006cb1a08b52" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../Chapter_5/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Chapter_5/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Chapter_5/fc/fc.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Chapter_5/fc/fc.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Chapter_5/fc/fc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Chapter_5/fc/fc.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/February 2019.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/a/cowland.1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/a/cowland.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/a/cowland.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/a/cowland.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/b/dishes.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/b/dishes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/b/dishes.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c/paintbarn.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c/paintbarn.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c/paintbarn.out" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/a/cowland.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="810">
+              <caret line="58" column="25" selection-start-line="58" selection-start-column="25" selection-end-line="58" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/a/cowland.1.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="17" column="50" selection-start-line="17" selection-start-column="50" selection-end-line="18" selection-end-column="36" />
+              <folding>
+                <element signature="e#0#2534#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/a/cowland.out">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>cowland</find>
+      <find>perimeter</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>cowland</replace>
+      <replace>dishes</replace>
+      <replace>paintbarn</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/a/perimeter.java" />
+        <option value="$PROJECT_DIR$/b/dishes.java" />
+        <option value="$PROJECT_DIR$/c/paintbarn.in" />
+        <option value="$PROJECT_DIR$/a/cowland.in" />
+        <option value="$PROJECT_DIR$/c/paintbarn.java" />
+        <option value="$PROJECT_DIR$/a/cowland.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1273" />
+    <option name="width" value="1294" />
+    <option name="height" value="1407" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="February 2019" type="b2602c69:ProjectViewProjectNode" />
+              <item name="February 2019" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="February 2019" type="b2602c69:ProjectViewProjectNode" />
+              <item name="February 2019" type="462c0819:PsiDirectoryNode" />
+              <item name="a" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="February 2019" type="b2602c69:ProjectViewProjectNode" />
+              <item name="February 2019" type="462c0819:PsiDirectoryNode" />
+              <item name="b" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="February 2019" type="b2602c69:ProjectViewProjectNode" />
+              <item name="February 2019" type="462c0819:PsiDirectoryNode" />
+              <item name="c" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551035916797" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Chapter_5" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\johan\Desktop\USACO\Competitions\February 2019" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\johan\Desktop\USACO\Competitions\February 2019\b" />
+      <recent name="C:\Users\johan\Desktop\USACO\Competitions\February 2019" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Java Scratch.first">
+    <configuration name="first" type="Java Scratch" factoryName="Java Scratch">
+      <option name="MAIN_CLASS_NAME" value="cowland" />
+      <module name="February 2019" />
+      <option name="SCRATCH_FILE_URL" value="file://$PROJECT_DIR$/a/cowland.java" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/a" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="second" type="Java Scratch" factoryName="Java Scratch">
+      <option name="MAIN_CLASS_NAME" value="dishes" />
+      <module name="February 2019" />
+      <option name="SCRATCH_FILE_URL" value="file://$PROJECT_DIR$/b/dishes.java" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/b" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="third" type="Java Scratch" factoryName="Java Scratch">
+      <option name="MAIN_CLASS_NAME" value="paintbarn" />
+      <module name="February 2019" />
+      <option name="SCRATCH_FILE_URL" value="file://$PROJECT_DIR$/c/paintbarn.java" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/c" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Java Scratch.first" />
+      <item itemvalue="Java Scratch.second" />
+      <item itemvalue="Java Scratch.third" />
+    </list>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f9ec13b6-c07a-4d6b-8019-006cb1a08b52" name="Default Changelist" comment="" />
+      <created>1551025664388</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1551025664388</updated>
+      <workItem from="1551025665844" duration="1335000" />
+      <workItem from="1551027189127" duration="8691000" />
+      <workItem from="1551037251109" duration="35000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="10061000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1273" y="0" width="1294" height="1407" extended-state="0" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1280389" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Learn" order="7" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32967034" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.222135" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39952904" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32967034" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32967034" />
+      <window_info anchor="bottom" id="Database Changes" order="11" />
+      <window_info anchor="bottom" id="Version Control" order="12" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24959481" />
+      <window_info anchor="right" id="Maven" order="3" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/b/perimeter.in" />
+    <entry file="file://$PROJECT_DIR$/c/perimeter.in" />
+    <entry file="file://$PROJECT_DIR$/a/perimeter.in" />
+    <entry file="file://$PROJECT_DIR$/a/perimeter.out" />
+    <entry file="file://$PROJECT_DIR$/../../Chapter_3/butter/butter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1033">
+          <folding>
+            <element signature="e#0#4341#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Chapter_3/agrinet/agrinet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#3978#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/b/dishes.in">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/b/dishes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="21" lean-forward="true" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#682#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Chapter_4/fence6/fence6.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-122">
+          <caret selection-end-line="5" />
+          <folding>
+            <element signature="e#0#2225#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Chapter_4/frameup/frameup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="553">
+          <caret line="90" column="5" lean-forward="true" selection-start-line="90" selection-start-column="5" selection-end-line="108" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#3802#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Chapter_4/milk6/milk6.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="26" column="21" lean-forward="true" selection-start-line="26" selection-start-column="21" selection-end-line="35" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#3370#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/cowland.in">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/c/paintbarn.in">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="7" lean-forward="true" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/c/paintbarn.out">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/c/paintbarn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="45" column="25" lean-forward="true" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/cowland.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="810">
+          <caret line="58" column="25" selection-start-line="58" selection-start-column="25" selection-end-line="58" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/cowland.1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="17" column="50" selection-start-line="17" selection-start-column="50" selection-end-line="18" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#2534#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/cowland.out">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
