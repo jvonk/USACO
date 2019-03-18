@@ -2,20 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9306465-52e3-46a5-80bb-3beb74102c2e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/johan.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chapter_4/milk6/milk6$Node.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chapter_4/milk6/milk6$edge.class" beforeDir="false" afterPath="$PROJECT_DIR$/Chapter_4/milk6/milk6$edge.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chapter_4/milk6/milk6.class" beforeDir="false" afterPath="$PROJECT_DIR$/Chapter_4/milk6/milk6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chapter_4/milk6/milk6.java" beforeDir="false" afterPath="$PROJECT_DIR$/Chapter_4/milk6/milk6.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chapter_4/milk6/milk6.java.newer" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chapter_4/milk6/milk6.java.newerer" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chapter_4/milk6/milk6.java.newererer" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chapter_4/milk6/milk6.java.newest" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chapter_4/milk6/milk6.java.newester" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chapter_4/milk6/milk6.java.newish" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chapter_4/milk6/milk6.java.old" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chapter_5/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chapter_5/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chapter_5/fc/fc.1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chapter_5/fc/fc.2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chapter_5/fc/fc.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chapter_5/fc/fc.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chapter_5/fc/fc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chapter_5/fc/fc.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chapter_5/starry/starry.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chapter_5/starry/starry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chapter_5/starry/starry.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Competitions/January 2019/gold/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Competitions/January 2019/gold/poetry/poetry.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Competitions/January 2019/gold/poetry/poetry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Competitions/January 2019/gold/poetry/poetry.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Competitions/January 2019/gold/sleepy/sleepy.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Competitions/January 2019/gold/sleepy/sleepy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Competitions/January 2019/gold/sleepy/sleepy.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Competitions/January 2019/mountain/mountain.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Competitions/January 2019/mountain/mountain.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Competitions/January 2019/mountain/mountain.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Competitions/January 2019/perimeter/perimeter.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Competitions/January 2019/perimeter/perimeter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Competitions/January 2019/perimeter/perimeter.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Competitions/January 2019/planting/planting.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Competitions/January 2019/planting/planting.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Competitions/January 2019/planting/planting.out" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,35 +38,102 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Chapter_4/milk6/milk6.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="34" column="20" lean-forward="true" selection-start-line="34" selection-start-column="20" selection-end-line="34" selection-end-column="20" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Chapter_4/milk6/milk6.in">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Chapter_4/milk6/milk6.out">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Chapter_5/fc/fc.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="135">
+                  <caret line="9" column="12" selection-end-line="9" selection-end-column="12" />
+                  <folding>
+                    <element signature="e#0#1693#0" expanded="true" />
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#749#750#0" expanded="true" />
+                    <element signature="e#821#822#0" expanded="true" />
+                    <element signature="e#871#872#0" expanded="true" />
+                    <element signature="e#944#945#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Chapter_5/fc/fc.in">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="60">
+                  <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Chapter_5/fc/fc.out">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="15">
+                  <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/Chapter_5/starry/starry.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="45">
+                  <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Chapter_5/starry/starry.in">
+              <provider selected="true" editor-type-id="text-editor" />
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Chapter_5/starry/starry.out">
+              <provider selected="true" editor-type-id="text-editor" />
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/Chapter_5/fc/fc.cpp">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1115">
+                  <caret line="77" column="53" lean-forward="true" selection-start-line="77" selection-start-column="53" selection-end-line="77" selection-end-column="54" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>compareTo</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -60,21 +142,30 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Chapter_4/milk6/milk6.java" />
+        <option value="$PROJECT_DIR$/Chapter_5/fc/fc.1.java" />
+        <option value="$PROJECT_DIR$/test.java" />
+        <option value="$PROJECT_DIR$/Chapter_5/fc/fc.in" />
+        <option value="$PROJECT_DIR$/Chapter_5/fc/hello.cpp" />
+        <option value="$PROJECT_DIR$/Chapter_5/fc/fc.out" />
+        <option value="$PROJECT_DIR$/Chapter_5/fc/fc.cpp" />
+        <option value="$PROJECT_DIR$/Chapter_5/fc/fc.java" />
+        <option value="$PROJECT_DIR$/Chapter_5/starry/starry.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="580" />
-    <option name="y" value="200" />
-    <option name="width" value="1400" />
-    <option name="height" value="1000" />
+    <option name="x" value="1273" />
+    <option name="width" value="1294" />
+    <option name="height" value="1407" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -86,27 +177,34 @@
             <path>
               <item name="USACO" type="b2602c69:ProjectViewProjectNode" />
               <item name="USACO" type="462c0819:PsiDirectoryNode" />
-              <item name="Chapter_4" type="462c0819:PsiDirectoryNode" />
+              <item name="Chapter_5" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="USACO" type="b2602c69:ProjectViewProjectNode" />
               <item name="USACO" type="462c0819:PsiDirectoryNode" />
-              <item name="Chapter_4" type="462c0819:PsiDirectoryNode" />
-              <item name="milk6" type="462c0819:PsiDirectoryNode" />
+              <item name="Chapter_5" type="462c0819:PsiDirectoryNode" />
+              <item name="starry" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550954911303" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Chapter_4/milk6" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552925959703" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Chapter_5/starry" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\johan\Desktop\USACO\Chapter_5\fc" />
+    </key>
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
@@ -133,6 +231,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="fc" type="Java Scratch" factoryName="Java Scratch" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="fc" />
+      <module name="USACO" />
+      <option name="SCRATCH_FILE_URL" value="file://$PROJECT_DIR$/Chapter_5/fc/fc.java" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Chapter_5/fc" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -143,16 +250,22 @@
       <updated>1550949317147</updated>
       <workItem from="1550949321555" duration="1374000" />
       <workItem from="1550954703088" duration="269000" />
+      <workItem from="1552009858996" duration="7438000" />
+      <workItem from="1552068970687" duration="64000" />
+      <workItem from="1552070384880" duration="2127000" />
+      <workItem from="1552173911307" duration="3305000" />
+      <workItem from="1552325936236" duration="19000" />
+      <workItem from="1552849531195" duration="12962000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1643000" />
+    <option name="totallyTimeSpent" value="27558000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13394277" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14666137" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -160,19 +273,20 @@
       <window_info id="UI Designer" order="5" />
       <window_info id="Learn" order="6" />
       <window_info id="Favorites" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32969603" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.17698413" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3988809" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32969603" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.12869704" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.3277378" />
+      <window_info anchor="bottom" id="JProfiler" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -181,30 +295,117 @@
       <window_info anchor="right" id="Maven" order="5" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Database" order="8" />
+      <window_info anchor="right" id="Database" order="8" weight="0.3298887" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Chapter_4/milk6/milk6.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="34" column="20" lean-forward="true" selection-start-line="34" selection-start-column="20" selection-end-line="34" selection-end-column="20" />
+        <state relative-caret-position="330">
+          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Chapter_4/milk6/milk6.in">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Chapter_4/milk6/milk6.out">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Chapter_4/milk6/milk6.in">
+    <entry file="file://$PROJECT_DIR$/test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="90">
+          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chapter_5/fc/fc.2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="23" column="23" lean-forward="true" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chapter_5/fc/fc.1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-226">
+          <caret line="26" column="16" lean-forward="true" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chapter_5/fc/hello.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chapter_5/fc/fc.in">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chapter_5/fc/fc.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1115">
+          <caret line="77" column="53" lean-forward="true" selection-start-line="77" selection-start-column="53" selection-end-line="77" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chapter_5/fc/fc.out">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chapter_5/starry/starry.in">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chapter_5/starry/starry.out">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chapter_5/fc/fc.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="12" selection-end-line="9" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#1693#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#749#750#0" expanded="true" />
+            <element signature="e#821#822#0" expanded="true" />
+            <element signature="e#871#872#0" expanded="true" />
+            <element signature="e#944#945#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chapter_5/starry/starry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
