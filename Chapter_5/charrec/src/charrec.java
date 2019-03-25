@@ -8,48 +8,111 @@ import java.util.*;
 import java.io.*;
 
 public class charrec {
+    static String letters = "_abcdefghijklmnopqrstuvwxyz";
+    static int N;
+    static boolean[][][] font;
+    static boolean[][] input;
+    static int[][][] diff;
+    static int[][] cost, from;
+    static int[] best, last;
     public static void main(String[] args) throws Exception {
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("charrec.out")));
-        boolean[][] font = read(new BufferedReader(new FileReader("font.in")));
-        boolean[][] input = read(new BufferedReader(new FileReader("charrec.in")));
-        boolean[][][] characters = new boolean[font.length/20][20][20];
-        char[] back = "_abcdefghijklmnopqrstuvwxyz".toCharArray();
+        boolean[][] fin = read(new BufferedReader(new FileReader("font.in")));
+        input = read(new BufferedReader(new FileReader("charrec.in")));
+        font = new boolean[fin.length/20][20][20];
+        diff = new int[font.length][20][N];
+        cost = new int[N][21];
+        from = new int[N][21];
+        best = new int[N];
+        last = new int[N];
         for (int i = 0; i < font.length; i++) {
-            characters[i/20][i%20]=font[i];
+            font[i/20][i%20]=fin[i];
         }
-        int count = 0;
-        int[][] diff = new int[3][characters.length];
-        boolean[] flag = new boolean[3];
-        for (int i = 0; i < input.length; i++) {
-            for (int j = 0; j < characters.length; j++) {
-                for (int k = 0; k < 3 && count+k < 20; k++) {
-                    diff[k][j] += diff(characters[j][count+k], input[i]);
-                }
-            }
-            int[] minVal = new int[] {-1, -1};
-            int min = Integer.MAX_VALUE;
-            for (int j = 1; j < 2; j++) {
-                for (int k = 0; k < characters.length; k++) {
-                    if (diff[j][k] < min){
-                        min = diff[j][k];
-                        minVal = new int[] {j, k};
+        for (int i = 0; i < font.length; i++) {
+            for (int j = 0; j < font[i].length; j++) {
+                for (int k = 0; k < input.length; k++) {
+                    for (int l = 0; l < input[k].length; l++) {
+                        if (font[i][j][l]!=input[k][l]) diff[i][j][k]++;
                     }
                 }
             }
-            count+=minVal[0];
-            if (minVal[0]==0) flag[0] = true;
-            else if (minVal[0]==2) flag[2] = true;
-            if (count>=20 || i+1==input.length) {
-                flag = new boolean[3];
-                out.print(back[minVal[1]]);
-                count=0;
+        }
+        int total = 0;
+        for (int i = 0; i < N; i++) {
+            Arrays.fill(cost[i], Integer.MAX_VALUE);
+        }
+        for (int i = 0; i < N; i++) {
+            //difference for each input line
+            //do skipping and doubling up too
+            if (i+18<N) {
+                for (int j = 0; j < font.length; j++) {
+                    //difference for each character
+                    total=0;
+                    for (int k = 1; k < diff[j].length; k++) {
+                        //difference for each font line
+                        total+=diff[j][k][i+k-1];
+                    }
+                    if (total<cost[i][19]) {
+                        //set minimum j
+                        cost[i][19]=total;
+                        from[i][19]=j;
+                    }
+                    for (int k = 1; k < diff[j].length; k++) {
+                        total+=diff[j][k-1][i+k-1];
+                        total-=diff[j][k][i+k-1];
+                        if (total<cost[i][19]) {
+                            //set minimum j;
+                            cost[i][19]=total;
+                            from[i][19]=j;
+                        }
+                    }
+                }
+            }
+            if (i+19<N) {
+                for (int j = 0; j < font.length; j++) {
+                    //difference for each character
+                    total=0;
+                    for (int k = 0; k < diff[j].length; k++) {
+                        //difference for each font line
+                        total+=diff[j][k][i+k];
+                    }
+                    if (total<cost[i][20]) {
+                        //set minimum j
+                        cost[i][20]=total;
+                        from[i][20]=j;
+                    }
+                }
+            }
+            if (i+20<N) {
+                for (int j = 0; j < font.length; j++) {
+                    //difference for each character
+                    total=0;
+                    for (int k = 0; k < diff[j].length; k++) {
+                        //difference for each font line
+                        total+=diff[j][k][i+k-(k==0?1:0)];
+                    }
+                    if (total<cost[i][21]) {
+                        //set minimum j
+                        cost[i][20]=total;
+                        from[i][20]=j;
+                    }
+                    for (int k = 1; k < diff[j].length; k++) {
+                        total+=diff[j][k][i+k];
+                        total-=diff[j][k][i+k+1];
+                        if (total<cost[i][20]) {
+                            //set minimum j;
+                            cost[i][20]=total;
+                            from[i][20]=j;
+                        }
+                    }
+                }
             }
         }
         out.println();
         out.close();
     }
     static boolean[][] read (BufferedReader in) throws Exception {
-        int N = Integer.parseInt(in.readLine());
+        N = Integer.parseInt(in.readLine());
         boolean[][] font = new boolean[N][20];
         for (int i = 0; i < N; i++) {
             char[] arr = in.readLine().toCharArray();
@@ -59,12 +122,5 @@ public class charrec {
         }
         in.close();
         return font;
-    }
-    static int diff(boolean[] a, boolean[] b) {
-        int sum = 0;
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] ^ b[i]) sum++;
-        }
-        return sum;
     }
 }
